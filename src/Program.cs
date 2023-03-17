@@ -1,17 +1,17 @@
-﻿// See https://aka.ms/new-console-template for more information
-using System;
+﻿using System;
 
 namespace src{
     public class Program
     {
         public static void Main(string[] args)
-    {
-        Hehe hehe = new Hehe();
-        FileReader fileReader = new FileReader();
-        hehe.HelloWorld();
-        fileReader.ReadFile();
-        Console.WriteLine("Hello, World! goblok");
-    }
+        {
+            int [,] mapMatrix = new int[0,0];
+            FileManager fileReader = new FileManager();
+            Utils Util = new Utils();
+            fileReader.ShowFilesInFolder();
+            fileReader.ReadFile(ref mapMatrix);
+            Util.PrintMap(ref mapMatrix);
+        }
     }
 
 }
