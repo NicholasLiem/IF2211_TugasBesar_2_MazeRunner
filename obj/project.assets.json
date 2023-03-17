@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nicho\\Desktop\\Programming Repository\\GitHub Repository\\Tubes2_MazeRunner\\app\\app.csproj",
+      "projectUniqueName": "C:\\Users\\nicho\\Desktop\\Programming Repository\\GitHub Repository\\Tubes2_MazeRunner\\app.csproj",
       "projectName": "app",
-      "projectPath": "C:\\Users\\nicho\\Desktop\\Programming Repository\\GitHub Repository\\Tubes2_MazeRunner\\app\\app.csproj",
+      "projectPath": "C:\\Users\\nicho\\Desktop\\Programming Repository\\GitHub Repository\\Tubes2_MazeRunner\\app.csproj",
       "packagesPath": "C:\\Users\\nicho\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nicho\\Desktop\\Programming Repository\\GitHub Repository\\Tubes2_MazeRunner\\app\\obj\\",
+      "outputPath": "C:\\Users\\nicho\\Desktop\\Programming Repository\\GitHub Repository\\Tubes2_MazeRunner\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\nicho\\AppData\\Roaming\\NuGet\\NuGet.Config",
