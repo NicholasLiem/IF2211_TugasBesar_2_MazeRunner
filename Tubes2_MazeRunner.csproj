@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationManifest>src/Manifest/app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>
