@@ -4,3 +4,8 @@
 *.pdb
 *.cache
 *.dll
+*.json
+.vs/Tubes2_MazeRunner/v17/.wsuo
+*.lock
+*.vsidx
+*.sqlite
