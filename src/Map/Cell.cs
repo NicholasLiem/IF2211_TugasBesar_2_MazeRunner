@@ -83,7 +83,7 @@ namespace src
                     typePrint = "Unknown?";
                     break;
             }
-            Console.WriteLine("location: [" + Row + "," + Col+ "]" + " type: " + typePrint + ", " +  "visited: " + Visited);
+            Console.WriteLine("loc: [" + Row + "," + Col+ "]" + " type: " + typePrint + ", " +  "visited: " + Visited);
         }
   }
 }

@@ -10,7 +10,7 @@ namespace src{
             Map map = new Map();
             Graph mapGraph = map.GetGraph();
             algorithms.DepthFirstSearch(ref mapGraph);
-            map.PrintTreasureCount();        
+            map.PrintTreasureCount();
         }
     }
 
