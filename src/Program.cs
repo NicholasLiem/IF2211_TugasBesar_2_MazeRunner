@@ -5,7 +5,7 @@ namespace src{
     {
         public static void Main(string[] args)
         {
-            int [,] mapMatrix = new int[0,0];
+            Cell [,] mapMatrix = new Cell[0,0];
             FileManager fileReader = new FileManager();
             Utils Util = new Utils();
             fileReader.ShowFilesInFolder();

@@ -39,7 +39,26 @@ namespace src
             int Row = _row;
             int Col = _col;
             int Type = _type;
-            Console.WriteLine(Row + Col + Type + " ");
+            String Visited = _visited.ToString();
+            String typePrint = "";
+            switch(Type){
+                case 0:
+                    typePrint = "Titik Awal";
+                    break;
+                case 1:
+                    typePrint = "Path";
+                    break;
+                case 3:
+                    typePrint = "Block";
+                    break;
+                case 9:
+                    typePrint = "Treasure";
+                    break;
+                default:
+                    typePrint = "Unknown?";
+                    break;
+            }
+            Console.WriteLine("location: [" + Row + "," + Col+ "]" + " type: " + typePrint + ", " +  "visited: " + Visited);
         }
   }
 }

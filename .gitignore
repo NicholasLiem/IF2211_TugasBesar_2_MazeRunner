@@ -4,3 +4,8 @@
 *.pdb
 *.cache
 *.dll
+*.dll
+*.pdb
+*.cache
+*.dll
+*.dll
