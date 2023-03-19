@@ -24,8 +24,12 @@ namespace src{
             return this.cells ?? new Cell[0,0];
         }
 
-        public int GetSize(){
-            return this.size;
+        public int GetRowSize(){
+            return this.rowSize;
+        }
+
+        public int GetColSize(){
+            return this.colSize;
         }
 
         public void PrintTreasureCount(){
