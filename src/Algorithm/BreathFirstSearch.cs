@@ -25,7 +25,7 @@ namespace src
                     continue;
                 }
 
-                if (currCell.Type == 9 && !solutionSpace.Contains(currCell))
+                if (currCell.getType() == 9 && !solutionSpace.Contains(currCell))
                 {
                     solutionSpace.Add(currCell);
                 }
@@ -44,7 +44,7 @@ namespace src
             return solutionSpace;
         }
 
-        public Func<Cell> ShortestPath(Graph graph)
+        public List<Cell> ShortestPath(Graph graph, List<Cell> solutions)
         {
             var route = new Dictionary<Cell, Cell>();
 
@@ -55,7 +55,7 @@ namespace src
             {
                 var currCell = cellQueue.Dequeue();
 
-                foreach (var neighbor in graph.GetCellNeighbors[currCell])
+                foreach (var neighbor in graph.GetCellNeighbors(currCell))
                 {
                     if (route.ContainsKey(neighbor))
                     {
@@ -67,25 +67,20 @@ namespace src
                 }
             }
 
-            Func<Cell> shortestPath = v =>
+            List<Cell> shortestPath = new List<Cell>();
+
+            for (int i = solutions.Count - 1; i > 0; i--)
             {
-                var path = new List<Cell>();
-
-                for (int i = v.Count; i > 0; i--)
+                var curr = solutions.ElementAt(i);
+                while (!curr.Equals(solutions.ElementAt(i - 1)))
                 {
-                    var curr = v.ElementAt(i);
-                    while (!curr.Equals(v.ElementAt(i - 1)))
-                    {
-                        path.Add(curr);
-                        curr = route[curr];
-                    }
+                    shortestPath.Add(curr);
+                    curr = route[curr];
                 }
+            }
 
-                path.Add(graph.EntryVertex);
-                path.Reverse();
-
-                return path;
-            };
+            shortestPath.Add(graph.EntryVertex);
+            shortestPath.Reverse();
 
             return shortestPath;
         }
