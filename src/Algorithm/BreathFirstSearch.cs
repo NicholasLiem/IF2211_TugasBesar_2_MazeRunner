@@ -51,6 +51,7 @@ namespace src
             var route = new Dictionary<Cell, Cell>();
 
             var cellQueue = new Queue<Cell>();
+            cellQueue.Enqueue(graph.EntryVertex);
 
             while (vertexQueue.Count > 0)
             {
@@ -68,7 +69,7 @@ namespace src
                 }
             }
 
-            Func shortestPath = v =>
+            Func<Cell> shortestPath = v =>
             {
                 var path = new List<Cell>();
 
