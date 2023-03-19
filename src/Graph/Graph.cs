@@ -63,11 +63,6 @@ namespace src
       {
         _adjacencyList.Add(vertex, new List<Cell>());
       }
-      else
-      {
-        Console.WriteLine("Bermasalah: ");
-        vertex.printCell();
-      }
     }
 
     public void deleteDuplicateAdjacencyValueList(){

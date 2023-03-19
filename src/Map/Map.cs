@@ -1,14 +1,37 @@
 using System;
 namespace src{
-    public class Maze{
+    public class Map{
+        FileManager fileReader = new FileManager();
         private Cell[,]? cells;
+        public static int treasureCount;
+        private Graph graph;
         private int size;
-        public Maze(int[,] maze){
-            for (int row = 0; row < size; row++){
-                for (int col = 0; col < size; col++){
-                    cells[row,col] = new Cell(row, col, 1); 
-                }
-            }
+        public Map(){    
+            treasureCount = 0;
+            this.cells = new Cell[0,0];
+            fileReader.ReadFile(ref cells);
+            this.size = cells.GetLength(0);
+            this.graph = Utils.registerVertex(ref cells); 
+        }
+
+        public Graph GetGraph(){
+            return this.graph;
+        }
+
+        public Cell[,] GetCells(){
+            return this.cells ?? new Cell[0,0];
+        }
+
+        public int GetSize(){
+            return this.size;
+        }
+
+        public void PrintTreasureCount(){
+            Console.WriteLine("Treasure Count: " + treasureCount);
+        }
+
+        public void ResetTreasureCount(){
+            treasureCount = 0;
         }
     }
 }

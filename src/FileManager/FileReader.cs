@@ -51,8 +51,6 @@ namespace src{
                         cells[i,j] = new Cell(i, j, type);
                     }
                 }
-                // Utils util = new Utils();
-                // util.PrintMap(ref cells);
             } else {
                 Console.WriteLine("Invalid file path or file type.");
             }
