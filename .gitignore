@@ -9,3 +9,9 @@
 *.lock
 *.vsidx
 *.sqlite
+*.v2
+*.1
+.vs/Tubes2_MazeRunner/v17/.suo
+*.exe
+obj/Debug/net7.0/apphost.exe
+*.sln

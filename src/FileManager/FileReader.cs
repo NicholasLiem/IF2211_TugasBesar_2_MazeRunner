@@ -4,12 +4,13 @@ using System.IO;
 namespace src{
     public partial class FileManager{
         static string basePath = Directory.GetCurrentDirectory();
-        public void ReadFile(ref int[,] matrix){
+        public void ReadFile(ref Cell[,] matrix){
             
             Console.WriteLine("Enter the name of a text file in the 'test' folder:");
             string? fileName = Console.ReadLine();
 
-            while(fileName == null || fileName == ""){
+            while (string.IsNullOrEmpty(fileName))
+            {
                 Console.WriteLine("Please enter a valid file name:");
                 fileName = Console.ReadLine();
             }
@@ -24,29 +25,32 @@ namespace src{
                 // X : Grid Non-Lintasan (3)
 
                 string[] lines = File.ReadAllLines(filePath);
-                matrix = new int[lines.Length, lines[0].Split(' ').Length];
+                Cell[,] cellMatrix = new Cell[lines.Length, lines[0].Split(' ').Length];
                 for (int i = 0; i < lines.Length; i++){
                     string[] row = lines[i].Split(' ');
 
                     for (int j = 0; j < row.Length; j++){
+                        int type = -1;
                         string textItem = row[j];
                         switch(textItem){
                             case "K":
-                                matrix[i, j] = 0;
+                                type = 0;
                                 break;
                             case "T":
-                                matrix[i, j] = 9;
+                                type = 9;
                                 break;
                             case "R":
-                                matrix[i, j] = 1;
+                                type = 1;
                                 break;
                             case "X":
-                                matrix[i, j] = 3;
+                                type = 3;
                                 break;
                             default:
                                 Console.WriteLine("Simbol tidak dikenali");
                                 break;
                         }
+
+                        cellMatrix[i, j] = new Cell(i, j, type);
                     }
                 }
             }
