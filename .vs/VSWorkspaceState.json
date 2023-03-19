@@ -3,9 +3,11 @@
     "",
     "\\src",
     "\\src\\FileManager",
+    "\\src\\Graph",
+    "\\src\\Graph\\test",
     "\\src\\Map",
     "\\src\\Utilities"
   ],
-  "SelectedNode": "\\src\\Map\\Map.cs",
+  "SelectedNode": "\\src\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

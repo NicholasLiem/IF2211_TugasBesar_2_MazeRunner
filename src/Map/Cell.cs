@@ -4,7 +4,7 @@ namespace src
 {
   public class Cell
   {
-    private int _row, _col, _type;
+    private int _row, _col, _type, _visitedCount;
     private bool _visited;
 
     public Cell(int row, int col, int type)
@@ -14,26 +14,47 @@ namespace src
       _type = type;
       _visited = false;
     }
-    public int Row
-    {
-      get { return _row; }
-      set { _row = value; }
+
+    public int getVisitedCount(){
+        return _visitedCount;
     }
-    public int Col
-    {
-      get { return _col; }
-      set { _col = value; }
+
+    public void setVisitedCount(int visitedCount){
+        _visitedCount = visitedCount;
     }
-    public bool Visited
-    {
-      get { return _visited; }
-      set { _visited = value; }
+
+    public int getRow(){
+        return _row;
     }
-    public int Type
-    {
-      get { return _type; }
-      set { _type = value; }
+
+    public void setRow(int row){
+        _row = row;
     }
+
+    public int getCol(){
+        return _col;
+    }
+
+    public void setCol(int col){
+        _col = col;
+    }
+
+    public bool isVisited(){
+        return _visited;
+    }
+
+    public void setVisited(bool visited){
+        _visited = visited;
+    }
+
+    public int getType(){
+        return _type;
+    }
+
+    public void setType(int type){
+        _type = type;
+    }
+
     public void printCell()
         {
             int Row = _row;

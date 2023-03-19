@@ -9,3 +9,14 @@
 *.cache
 *.dll
 *.dll
+*.sqlite
+*.vsidx
+*.vsidx
+*.vsidx
+.vs/Tubes2_MazeRunner/v17/.wsuo
+*.json
+*.sqlite
+*.dll
+*.dll
+*.cache
+*.editorconfig
