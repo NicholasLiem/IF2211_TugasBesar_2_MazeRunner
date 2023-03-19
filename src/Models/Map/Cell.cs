@@ -1,6 +1,6 @@
 using System;
 
-namespace src
+namespace Maze.Models
 {
   public class Cell
   {

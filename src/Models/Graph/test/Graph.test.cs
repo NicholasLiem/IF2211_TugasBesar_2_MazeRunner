@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using src;
+using Maze.Models;
 
 namespace GraphTest
 {
   public class GraphTest
   {
-    public static void Main(string[] args)
+    public static void Main1(string[] args)
     {
       // Initialize some random cells
       Cell c1 = new Cell(1, 1);

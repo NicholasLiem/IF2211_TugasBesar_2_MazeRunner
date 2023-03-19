@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace src
+namespace Maze.Models
 {
   public class Graph
   {
