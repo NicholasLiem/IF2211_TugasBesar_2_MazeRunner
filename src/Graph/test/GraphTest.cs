@@ -1,17 +1,17 @@
 using System;
-using System.getCol()lections.Generic;
+using System.Collections.Generic;
 using src;
 
 namespace GraphTest
 {
   public class GraphTest
   {
-    public static void MainS(string[] args)
+    public static void Mains(string[] args)
     {
       // Initialize some random cells
-      Cell c1 = new Cell(1, 1, 1);
-      Cell c2 = new Cell(2, 2, 1);
-      Cell c3 = new Cell(3, 3, 1);
+      Cell c1 = new Cell(1, 1, 0);
+      Cell c2 = new Cell(1, 2, 1);
+      Cell c3 = new Cell(1, 3, 1);
 
       // Initialize graph
       Graph graph = new Graph(c1);

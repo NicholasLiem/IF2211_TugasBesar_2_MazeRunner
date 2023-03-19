@@ -5,12 +5,16 @@ namespace src{
     {
         public static void Main(string[] args)
         {
-            Cell [,] mapMatrix = new Cell[0,0];
             FileManager fileReader = new FileManager();
             Utils Util = new Utils();
+            Algorithms algorithms = new Algorithms();
+            Cell[,] cells = new Cell[0,0];
             fileReader.ShowFilesInFolder();
-            fileReader.ReadFile(ref mapMatrix);
-            Util.PrintMap(ref mapMatrix);
+            fileReader.ReadFile(ref cells);
+            Graph graph = Util.registerVertex(ref cells);
+            // algorithms.DepthFirstSearch(ref graph);
+
+
         }
     }
 

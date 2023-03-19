@@ -21,6 +21,7 @@ namespace src
       _adjacencyList.Add(entryVertex, new List<Cell>());
     }
 
+
     /// <summary>
     /// Getter-setter for entry vertex attribute
     /// </summary>
@@ -64,7 +65,18 @@ namespace src
       }
       else
       {
-        throw new DuplicateVertexException();
+        Console.WriteLine("Bermasalah: ");
+        vertex.printCell();
+      }
+    }
+
+    public void deleteDuplicateAdjacencyValueList(){
+      foreach (KeyValuePair<Cell, List<Cell>> entry in _adjacencyList)
+      {
+        List<Cell> list = entry.Value;
+        HashSet<Cell> hashSet = new HashSet<Cell>(list);
+        list.Clear();
+        list.AddRange(hashSet);
       }
     }
 
@@ -87,6 +99,19 @@ namespace src
 
       _adjacencyList[vertex1].Add(vertex2);
       _adjacencyList[vertex2].Add(vertex1);
+    }
+    
+    public void printAdjacencyList(){
+      foreach (KeyValuePair<Cell, List<Cell>> entry in _adjacencyList)
+      {
+        Console.Write("Key: ");
+        entry.Key.printCell();
+        foreach (Cell cell in entry.Value)
+        {
+          Console.Write("Value: ");
+          cell.printCell();
+        }
+      }
     }
   }
 }

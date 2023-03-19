@@ -23,6 +23,10 @@ namespace src
         _visitedCount = visitedCount;
     }
 
+    public void addVisitedCount(){
+        _visitedCount++;
+    }
+
     public int getRow(){
         return _row;
     }

@@ -4,7 +4,7 @@ using System.IO;
 namespace src{
     public partial class FileManager{
         static string basePath = Directory.GetCurrentDirectory();
-        public void ReadFile(ref Cell[,] matrix){
+        public void ReadFile(ref Cell[,] cells){
             
             Console.WriteLine("Enter the name of a text file in the 'test' folder:");
             string? fileName = Console.ReadLine();
@@ -24,7 +24,7 @@ namespace src{
                 // X : Grid Non-Lintasan (3)
 
                 string[] lines = File.ReadAllLines(filePath);
-                matrix = new Cell[lines.Length, lines[0].Split(' ').Length];
+                cells = new Cell[lines.Length, lines[0].Split(' ').Length];
                 for (int i = 0; i < lines.Length; i++){
                     string[] row = lines[i].Split(' ');
 
@@ -48,12 +48,12 @@ namespace src{
                                 Console.WriteLine("Simbol tidak dikenali");
                                 break;
                         }
-                        matrix[i,j] = new Cell(i, j, type);
+                        cells[i,j] = new Cell(i, j, type);
                     }
                 }
-            }
-            else
-            {
+                // Utils util = new Utils();
+                // util.PrintMap(ref cells);
+            } else {
                 Console.WriteLine("Invalid file path or file type.");
             }
         }
