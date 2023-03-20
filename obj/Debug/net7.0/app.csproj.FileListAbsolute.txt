@@ -28,3 +28,18 @@ C:\Users\nicho\Desktop\Programming Repository\GitHub Repository\Tubes2_MazeRunne
 C:\Users\nicho\Desktop\Programming Repository\GitHub Repository\Tubes2_MazeRunner\obj\Debug\net7.0\app.pdb
 C:\Users\nicho\Desktop\Programming Repository\GitHub Repository\Tubes2_MazeRunner\obj\Debug\net7.0\app.genruntimeconfig.cache
 C:\Users\nicho\Desktop\Programming Repository\GitHub Repository\Tubes2_MazeRunner\obj\Debug\net7.0\ref\app.dll
+D:\Insitut Teknologi Bandung\ITB STEI-G\SMT 4\Stima\Tubes\Tubes2\Tubes2_MazeRunner\obj\Debug\net7.0\app.csproj.AssemblyReference.cache
+D:\Insitut Teknologi Bandung\ITB STEI-G\SMT 4\Stima\Tubes\Tubes2\Tubes2_MazeRunner\obj\Debug\net7.0\app.GeneratedMSBuildEditorConfig.editorconfig
+D:\Insitut Teknologi Bandung\ITB STEI-G\SMT 4\Stima\Tubes\Tubes2\Tubes2_MazeRunner\obj\Debug\net7.0\app.AssemblyInfoInputs.cache
+D:\Insitut Teknologi Bandung\ITB STEI-G\SMT 4\Stima\Tubes\Tubes2\Tubes2_MazeRunner\obj\Debug\net7.0\app.AssemblyInfo.cs
+D:\Insitut Teknologi Bandung\ITB STEI-G\SMT 4\Stima\Tubes\Tubes2\Tubes2_MazeRunner\obj\Debug\net7.0\app.csproj.CoreCompileInputs.cache
+D:\Insitut Teknologi Bandung\ITB STEI-G\SMT 4\Stima\Tubes\Tubes2\Tubes2_MazeRunner\obj\Debug\net7.0\app.dll
+D:\Insitut Teknologi Bandung\ITB STEI-G\SMT 4\Stima\Tubes\Tubes2\Tubes2_MazeRunner\obj\Debug\net7.0\refint\app.dll
+D:\Insitut Teknologi Bandung\ITB STEI-G\SMT 4\Stima\Tubes\Tubes2\Tubes2_MazeRunner\obj\Debug\net7.0\app.pdb
+D:\Insitut Teknologi Bandung\ITB STEI-G\SMT 4\Stima\Tubes\Tubes2\Tubes2_MazeRunner\bin\Debug\net7.0\app.exe
+D:\Insitut Teknologi Bandung\ITB STEI-G\SMT 4\Stima\Tubes\Tubes2\Tubes2_MazeRunner\bin\Debug\net7.0\app.deps.json
+D:\Insitut Teknologi Bandung\ITB STEI-G\SMT 4\Stima\Tubes\Tubes2\Tubes2_MazeRunner\bin\Debug\net7.0\app.runtimeconfig.json
+D:\Insitut Teknologi Bandung\ITB STEI-G\SMT 4\Stima\Tubes\Tubes2\Tubes2_MazeRunner\bin\Debug\net7.0\app.dll
+D:\Insitut Teknologi Bandung\ITB STEI-G\SMT 4\Stima\Tubes\Tubes2\Tubes2_MazeRunner\bin\Debug\net7.0\app.pdb
+D:\Insitut Teknologi Bandung\ITB STEI-G\SMT 4\Stima\Tubes\Tubes2\Tubes2_MazeRunner\obj\Debug\net7.0\app.genruntimeconfig.cache
+D:\Insitut Teknologi Bandung\ITB STEI-G\SMT 4\Stima\Tubes\Tubes2\Tubes2_MazeRunner\obj\Debug\net7.0\ref\app.dll

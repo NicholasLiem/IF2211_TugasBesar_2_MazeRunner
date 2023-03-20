@@ -21,3 +21,6 @@
 *.cache
 *.editorconfig
 *.dll
+*.pdb
+*.exe
+*.cache

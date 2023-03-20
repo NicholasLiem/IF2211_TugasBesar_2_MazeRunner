@@ -1,6 +1,7 @@
 ﻿using System;
 
-namespace src{
+namespace src
+{
     public class Program
     {
         public static void Main(string[] args)
@@ -9,9 +10,17 @@ namespace src{
             Algorithms algorithms = new Algorithms();
             Map map = new Map();
             Graph mapGraph = map.GetGraph();
-            List<List<Cell>> pathToTreasure = algorithms.DepthFirstSearch(mapGraph);
-            algorithms.DFSPathPrint(pathToTreasure);
+            algorithms.DepthFirstSearch(mapGraph);
+            var solutions = algorithms.BreathFirstSearch(mapGraph);
+            var shortestPath = algorithms.ShortestPath(mapGraph, solutions);
+
+            Console.Write("path : ");
+            foreach (var cell in shortestPath)
+            {
+                Console.Write("[{1,0}, {1,0}], ", cell.getRow(), cell.getCol());
+            }
+            Console.WriteLine();
+            map.PrintTreasureCount();
         }
     }
-
 }
