@@ -7,6 +7,7 @@ namespace src{
         private Graph graph;
         private int rowSize;
         private int colSize;
+        public static List<List<int>> treasureList = new List<List<int>>();
         public Map(){    
             treasureCount = 0;
             this.cells = new Cell[0,0];
@@ -14,6 +15,7 @@ namespace src{
             this.rowSize = cells.GetLength(0);
             this.colSize = cells.GetLength(1);
             this.graph = Utils.registerVertex(ref cells); 
+            Utils.findTreasurePositions(ref treasureList, ref cells);
         }
 
         public Graph GetGraph(){

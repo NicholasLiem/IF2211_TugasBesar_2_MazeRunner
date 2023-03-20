@@ -9,8 +9,8 @@ namespace src{
             Algorithms algorithms = new Algorithms();
             Map map = new Map();
             Graph mapGraph = map.GetGraph();
-            algorithms.DepthFirstSearch(ref mapGraph);
-            map.PrintTreasureCount();
+            List<List<Cell>> pathToTreasure = algorithms.DepthFirstSearch(mapGraph);
+            algorithms.DFSPathPrint(pathToTreasure);
         }
     }
 
