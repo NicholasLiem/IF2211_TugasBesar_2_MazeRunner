@@ -10,7 +10,8 @@ namespace src
             Algorithms algorithms = new Algorithms();
             Map map = new Map();
             Graph mapGraph = map.GetGraph();
-            algorithms.DepthFirstSearch(mapGraph);
+            List<List<Cell>> paths = algorithms.DepthFirstSearch(mapGraph);
+            algorithms.DFSPathPrint(paths);
             var solutions = algorithms.BreathFirstSearch(mapGraph);
             var shortestPath = algorithms.ShortestPath(mapGraph, solutions);
 

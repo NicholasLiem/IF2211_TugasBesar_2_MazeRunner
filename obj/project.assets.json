@@ -8,24 +8,26 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Hosea\\.nuget\\packages\\": {}
+    "C:\\Users\\nicho\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Insitut Teknologi Bandung\\ITB STEI-G\\SMT 4\\Stima\\Tubes\\Tubes2\\Tubes2_MazeRunner\\app.csproj",
+      "projectUniqueName": "C:\\Users\\nicho\\Desktop\\Programming Repository\\GitHub Repository\\Tubes2_MazeRunner\\app.csproj",
       "projectName": "app",
-      "projectPath": "D:\\Insitut Teknologi Bandung\\ITB STEI-G\\SMT 4\\Stima\\Tubes\\Tubes2\\Tubes2_MazeRunner\\app.csproj",
-      "packagesPath": "C:\\Users\\Hosea\\.nuget\\packages\\",
-      "outputPath": "D:\\Insitut Teknologi Bandung\\ITB STEI-G\\SMT 4\\Stima\\Tubes\\Tubes2\\Tubes2_MazeRunner\\obj\\",
+      "projectPath": "C:\\Users\\nicho\\Desktop\\Programming Repository\\GitHub Repository\\Tubes2_MazeRunner\\app.csproj",
+      "packagesPath": "C:\\Users\\nicho\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\nicho\\Desktop\\Programming Repository\\GitHub Repository\\Tubes2_MazeRunner\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Hosea\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\nicho\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -59,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

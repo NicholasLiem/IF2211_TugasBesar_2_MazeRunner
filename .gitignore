@@ -24,3 +24,14 @@
 *.pdb
 *.exe
 *.cache
+*.dll
+*.dll
+bin/Debug/net7.0/app.dll
+bin/Debug/net7.0/app.exe
+bin/Debug/net7.0/app.pdb
+obj/app.csproj.nuget.dgspec.json
+obj/app.csproj.nuget.g.props
+obj/Debug/net7.0/app.assets.cache
+obj/Debug/net7.0/app.dll
+*.json
+*.cache

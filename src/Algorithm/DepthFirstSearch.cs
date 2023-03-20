@@ -5,7 +5,6 @@ namespace src {
     public partial class Algorithms {
         public List<List<Cell>> DepthFirstSearch(Graph graph) {
             List<List<Cell>> pathToTreasure = new List<List<Cell>>();
-            List<Cell> terbuang = new List<Cell>();
 
             Stack<Cell> availableNodes = new Stack<Cell>();
             HashSet<Cell> visitedNodes = new HashSet<Cell>();
@@ -42,15 +41,11 @@ namespace src {
                 if (!addToBacktrackingPath) {                    
                     while (candidatePath.Count > 0
                             && !(candidatePath.Peek().Equals(lastTreasure))) {
-                        Cell cs = candidatePath.Pop();
+                        candidatePath.Pop();
                     }
                 }
             }
 
-            System.Console.WriteLine("Terbuang: ");
-            foreach(Cell cs in terbuang){
-                cs.printCell();
-            }
             return pathToTreasure;
         }
 
