@@ -1,88 +1,68 @@
+using System.Linq;
+using System.Reflection.Metadata;
+using System.Threading;
+using System.ComponentModel;
+using System.Net;
+using System.IO;
+using System.Runtime.InteropServices;
 using System;
 
 namespace src
 {
     public partial class Algorithms
     {
-        public List<Cell> BreathFirstSearch(Graph graph)
+        private static int treasureFound = 0;
+
+        public int TreasureFound
         {
-            var checkedCells = new List<Cell>();
-
-            var start = graph.EntryVertex;
-
-            var solutionSpace = new List<Cell>();
-            solutionSpace.Add(start);
-
-            var checkQueue = new Queue<Cell>();
-            checkQueue.Enqueue(start);
+            get { return treasureFound; }
+            set
+            {
+                treasureFound = value;
+            }
+        }
+        public List<Cell> BreathFirstSearch(Graph graph, Cell start)
+        {
+            List<Cell> checkedCells = new List<Cell>();
+            var checkQueue = new Queue<List<Cell>>();
+            var checkPath = new List<Cell>();
+            checkPath.Add(start);
+            checkQueue.Enqueue(checkPath);
 
             while (checkQueue.Count > 0)
             {
-                var currCell = checkQueue.Dequeue();
+                var currCellList = checkQueue.Dequeue();
+                var currCell = currCellList.ElementAt(currCellList.Count - 1);
 
                 if (checkedCells.Contains(currCell))
                 {
                     continue;
                 }
 
-                if (currCell.getType() == 9 && !solutionSpace.Contains(currCell))
-                {
-                    solutionSpace.Add(currCell);
-                }
-
                 checkedCells.Add(currCell);
+
+                if (currCell.getType() == 9 && !currCell.isEqual(start))
+                {
+                    treasureFound += 1;
+                    return currCellList;
+                }
 
                 foreach (var neighbor in graph.GetCellNeighbors(currCell))
                 {
                     if (!checkedCells.Contains(neighbor))
                     {
-                        checkQueue.Enqueue(neighbor);
+                        List<Cell> newPath = new List<Cell>();
+                        foreach (var elmt in currCellList)
+                        {
+                            newPath.Add(elmt);
+                        }
+                        newPath.Add(neighbor);
+                        checkQueue.Enqueue(newPath);
                     }
                 }
             }
 
-            return solutionSpace;
-        }
-
-        public List<Cell> ShortestPath(Graph graph, List<Cell> solutions)
-        {
-            var route = new Dictionary<Cell, Cell>();
-
-            var cellQueue = new Queue<Cell>();
-            cellQueue.Enqueue(graph.EntryVertex);
-
-            while (cellQueue.Count > 0)
-            {
-                var currCell = cellQueue.Dequeue();
-
-                foreach (var neighbor in graph.GetCellNeighbors(currCell))
-                {
-                    if (route.ContainsKey(neighbor))
-                    {
-                        continue;
-                    }
-
-                    route[neighbor] = currCell;
-                    cellQueue.Enqueue(neighbor);
-                }
-            }
-
-            List<Cell> shortestPath = new List<Cell>();
-
-            for (int i = solutions.Count - 1; i > 0; i--)
-            {
-                var curr = solutions.ElementAt(i);
-                while (!curr.Equals(solutions.ElementAt(i - 1)))
-                {
-                    shortestPath.Add(curr);
-                    curr = route[curr];
-                }
-            }
-
-            shortestPath.Add(graph.EntryVertex);
-            shortestPath.Reverse();
-
-            return shortestPath;
+            return checkPath;
         }
     }
 }

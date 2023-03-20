@@ -12,13 +12,22 @@ namespace src
             Graph mapGraph = map.GetGraph();
             List<List<Cell>> paths = algorithms.DepthFirstSearch(mapGraph);
             algorithms.DFSPathPrint(paths);
-            var solutions = algorithms.BreathFirstSearch(mapGraph);
-            var shortestPath = algorithms.ShortestPath(mapGraph, solutions);
 
-            Console.Write("path : ");
-            foreach (var cell in shortestPath)
+            List<Cell> solutions = new List<Cell>();
+            var start = mapGraph.EntryVertex;
+            while (algorithms.TreasureFound < map.TreasureCount)
             {
-                Console.Write("[{1,0}, {1,0}], ", cell.getRow(), cell.getCol());
+                foreach (var cell in algorithms.BreathFirstSearch(mapGraph, start))
+                {
+                    solutions.Add(cell);
+                }
+                start = solutions.ElementAt(solutions.Count - 1);
+            }
+
+            Console.WriteLine("result path  :");
+            foreach (var cell in solutions)
+            {
+                cell.printCell();
             }
             Console.WriteLine();
             map.PrintTreasureCount();

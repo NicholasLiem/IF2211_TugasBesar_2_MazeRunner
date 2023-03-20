@@ -70,7 +70,7 @@ namespace src
             _type = type;
         }
 
-        public bool isEqual(ref Cell other)
+        public bool isEqual(Cell other)
         {
             return _row == other.getRow() && _col == other.getCol() && _type == other.getType();
         }
@@ -100,7 +100,7 @@ namespace src
                     typePrint = "Unknown?";
                     break;
             }
-            Console.WriteLine("[" + Row + "," + Col + "]" + " T: " + typePrint + ", " +  "VC: " + _visitedCount + "");
+            Console.WriteLine("[" + Row + "," + Col + "]" + " T: " + typePrint + ", " + "VC: " + _visitedCount + "");
         }
     }
 }

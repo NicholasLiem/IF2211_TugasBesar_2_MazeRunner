@@ -43,3 +43,18 @@ D:\Insitut Teknologi Bandung\ITB STEI-G\SMT 4\Stima\Tubes\Tubes2\Tubes2_MazeRunn
 D:\Insitut Teknologi Bandung\ITB STEI-G\SMT 4\Stima\Tubes\Tubes2\Tubes2_MazeRunner\bin\Debug\net7.0\app.pdb
 D:\Insitut Teknologi Bandung\ITB STEI-G\SMT 4\Stima\Tubes\Tubes2\Tubes2_MazeRunner\obj\Debug\net7.0\app.genruntimeconfig.cache
 D:\Insitut Teknologi Bandung\ITB STEI-G\SMT 4\Stima\Tubes\Tubes2\Tubes2_MazeRunner\obj\Debug\net7.0\ref\app.dll
+C:\Program Files\ITBSTEIG\SMT4\Stima\Tubes2_MazeRunner\obj\Debug\net7.0\app.csproj.AssemblyReference.cache
+C:\Program Files\ITBSTEIG\SMT4\Stima\Tubes2_MazeRunner\obj\Debug\net7.0\app.GeneratedMSBuildEditorConfig.editorconfig
+C:\Program Files\ITBSTEIG\SMT4\Stima\Tubes2_MazeRunner\obj\Debug\net7.0\app.AssemblyInfoInputs.cache
+C:\Program Files\ITBSTEIG\SMT4\Stima\Tubes2_MazeRunner\obj\Debug\net7.0\app.AssemblyInfo.cs
+C:\Program Files\ITBSTEIG\SMT4\Stima\Tubes2_MazeRunner\obj\Debug\net7.0\app.csproj.CoreCompileInputs.cache
+C:\Program Files\ITBSTEIG\SMT4\Stima\Tubes2_MazeRunner\obj\Debug\net7.0\app.dll
+C:\Program Files\ITBSTEIG\SMT4\Stima\Tubes2_MazeRunner\obj\Debug\net7.0\refint\app.dll
+C:\Program Files\ITBSTEIG\SMT4\Stima\Tubes2_MazeRunner\obj\Debug\net7.0\app.pdb
+C:\Program Files\ITBSTEIG\SMT4\Stima\Tubes2_MazeRunner\bin\Debug\net7.0\app.exe
+C:\Program Files\ITBSTEIG\SMT4\Stima\Tubes2_MazeRunner\bin\Debug\net7.0\app.deps.json
+C:\Program Files\ITBSTEIG\SMT4\Stima\Tubes2_MazeRunner\bin\Debug\net7.0\app.runtimeconfig.json
+C:\Program Files\ITBSTEIG\SMT4\Stima\Tubes2_MazeRunner\bin\Debug\net7.0\app.dll
+C:\Program Files\ITBSTEIG\SMT4\Stima\Tubes2_MazeRunner\bin\Debug\net7.0\app.pdb
+C:\Program Files\ITBSTEIG\SMT4\Stima\Tubes2_MazeRunner\obj\Debug\net7.0\app.genruntimeconfig.cache
+C:\Program Files\ITBSTEIG\SMT4\Stima\Tubes2_MazeRunner\obj\Debug\net7.0\ref\app.dll
