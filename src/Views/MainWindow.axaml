@@ -2,9 +2,54 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:view="clr-namespace:Maze.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Maze.Views.MainWindow"
         Width="1440" Height="810"
         Title="MazeRunner">
-        Hello World
+	<Window.Styles>
+		<Style Selector="Button.search">
+			<Setter Property="CornerRadius" Value="12"/>
+		</Style>
+	</Window.Styles>
+	<StackPanel Orientation="Horizontal">
+	<Slider Name="row" Minimum="0" Maximum="100" Value="{Binding Rows, Mode=TwoWay}" IsVisible="false"/>
+	<Slider Name="col" Minimum="0" Maximum="100" Value="{Binding Cols, Mode=TwoWay}" IsVisible="false"/>
+		<StackPanel>
+			<StackPanel Background="#FFFFFF" Width="1092" Height="746">
+				<Grid Margin="0,64,0,0">
+					<ItemsControl Items="{Binding CellList}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<UniformGrid Rows="{Binding Rows}" Columns="{Binding Cols}" Width="600" Height="600" />
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<Panel Background="{Binding Color}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4,4,4,4">
+									<TextBlock Text="{Binding Color}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+								</Panel>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</Grid>
+			</StackPanel>
+
+			<StackPanel Background="#D9D9D9" Width="1092" Height="64">
+				<Slider Name="slider" VerticalAlignment="Center" Margin="48,0,48,0" Minimum="0" Maximum="{Binding SliderMax}" Value="{Binding Iteration, Mode=TwoWay}"/>
+			</StackPanel>
+		</StackPanel>
+
+		<StackPanel Background="#A9A9A9" Width="348" Height="810">
+			<Button Classes="search" Width="252" Height="81" FontSize="32" HorizontalAlignment="Center" Margin="0,364,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Command="{Binding HandleSearch}">Search !</Button>
+
+			<TextBlock Margin="48,48,48,0" Text="{Binding ExecTime, StringFormat='Execution Time : {0} ms'}"></TextBlock>
+			<DockPanel Margin="48,24,48,0">
+				<TextBlock TextAlignment="Left" Text="{Binding Steps, StringFormat='Steps : {0}'}" DockPanel.Dock="Left"></TextBlock>
+				<TextBlock TextAlignment="Right" Text="{Binding Nodes, StringFormat='Nodes : {0}'}" DockPanel.Dock="Right"></TextBlock>
+			</DockPanel>
+			<TextBlock Margin="48,24,48,0">Route : R - D - D - R - R - U</TextBlock>
+		</StackPanel>
+	</StackPanel>
 </Window>
