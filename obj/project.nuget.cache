@@ -1,5 +1,6 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "wMkhHgZt/iaFl1AwqBbK6Yyh22NepWrhU2TqmnTQkgCTLrFL/a4fuszlbVgVNZsnPNwhUdk7Epo8WAoIZJCHGw==",
   "success": true,
   "projectFilePath": "/home/rma1403/Documents/Programming/kuliah/Tubes2_MazeRunner/Tubes2_MazeRunner.csproj",
@@ -73,5 +74,11 @@
     "/home/rma1403/.nuget/packages/tmds.dbus/0.9.0/tmds.dbus.0.9.0.nupkg.sha512",
     "/home/rma1403/.nuget/packages/xamlnamereferencegenerator/1.6.1/xamlnamereferencegenerator.1.6.1.nupkg.sha512"
   ],
+=======
+  "dgSpecHash": "X4r5ylDG1nteFsszRTVlzZHOGZL0W9X9wxpV6Wo9nlVQ2p0w3Ui7UG8sUHVL8F23dYWiROkgLex16CEXbzneGA==",
+  "success": true,
+  "projectFilePath": "C:\\Program Files\\ITBSTEIG\\SMT4\\Stima\\Tubes2_MazeRunner\\app.csproj",
+  "expectedPackageFiles": [],
+>>>>>>> without-gui
   "logs": []
 }

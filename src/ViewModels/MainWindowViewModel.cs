@@ -25,9 +25,7 @@ namespace Maze.ViewModels
       {
         for (int j = 0; j < cols; j++)
         {
-          _cellList[i, j] = new Cell(i, j);
-          _cellList[i, j].TotalCol = cols;
-          _cellList[i, j].TotalRow = rows;
+          _cellList[i, j] = new Cell(i, j, -1);
           if (i == 0 && j == 0)
           {
             _cellList[i, j].Color = "#FFFFFF";
@@ -99,12 +97,12 @@ namespace Maze.ViewModels
           {
             if (cols * i + j == _iteration)
             {
-              temp[i, j] = new Cell(i, j);
+              temp[i, j] = new Cell(i, j, -1);
               temp[i, j].Color = "#FFFFFF";
             }
             else
             {
-              temp[i, j] = new Cell(i, j);
+              temp[i, j] = new Cell(i, j, -1);
             }
           }
         }
@@ -131,7 +129,7 @@ namespace Maze.ViewModels
       {
         for (int j = 0; j < cols; j++)
         {
-          temp[i, j] = new Cell(i, j);
+          temp[i, j] = new Cell(i, j, -1);
           if (i == 0 && j == 0)
           {
             temp[i, j].Color = "#FFFFFF";

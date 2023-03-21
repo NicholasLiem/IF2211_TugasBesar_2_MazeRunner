@@ -11,4 +11,8 @@ namespace Maze.Models
   {
     public DuplicateVertexException() : base("Vertex is already in the graph") { }
   }
+  public class MatrixCellEmptyException : Exception
+  {
+    public MatrixCellEmptyException() : base("Cells Matrix is empty") { }
+  }
 }

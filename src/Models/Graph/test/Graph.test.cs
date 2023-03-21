@@ -9,9 +9,9 @@ namespace GraphTest
     public static void Main1(string[] args)
     {
       // Initialize some random cells
-      Cell c1 = new Cell(1, 1);
-      Cell c2 = new Cell(2, 2);
-      Cell c3 = new Cell(3, 3);
+      Cell c1 = new Cell(1, 1, 9);
+      Cell c2 = new Cell(2, 2, 9);
+      Cell c3 = new Cell(3, 3, 9);
 
       // Initialize graph
       Graph graph = new Graph(c1);
