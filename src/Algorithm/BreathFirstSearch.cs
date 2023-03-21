@@ -13,13 +13,15 @@ namespace src
     {
         private static List<Cell> solutionSpace = new List<Cell>();
         // menyimpan cell-cell treasure yang sudah ditemukan
+
         private static List<Cell> checklist = new List<Cell>();
         // menyimpan list pengecekan pada setiap iterasi bfs
+
         public List<Cell> CheckList
         {
             get { return checklist; }
         }
-        public List<Cell> BreathFirstSearch(Graph graph, Cell start, int treasureCount)
+        public List<Cell> BreadthFirstSearch(Graph graph, Cell start, int type = 9)
         {
             // Untuk menyimpan cell-cell yang sudah dikunjungi pada saat iterasi
             List<Cell> checkedCells = new List<Cell>();
@@ -31,7 +33,7 @@ namespace src
             checkQueue.Enqueue(checkPath);
 
             // mulai bfs dengan queue dengan kondisi bahwa queue masih ada atau semua Treasure belum ditemukan
-            while (checkQueue.Count > 0 && solutionSpace.Count < treasureCount)
+            while (checkQueue.Count > 0)
             {
                 // Mengambil elemen terakhir dari list untuk dikunjungi
                 var currCellList = checkQueue.Dequeue();
@@ -49,15 +51,22 @@ namespace src
                 currCell.addVisitedCount();
 
                 // jika cell adalah treasure, akan dilakukan bfs lagi dari treasure tersebut dan jalur akan digabungkan dan menjadi solusi
-                if (currCell.getType() == 9 && !currCell.isEqual(start) && !solutionSpace.Contains(currCell))
+                if (currCell.getType() == type && !currCell.isEqual(start) && !solutionSpace.Contains(currCell))
                 {
                     solutionSpace.Add(currCell);
 
-                    List<Cell> nextPath = BreathFirstSearch(graph, currCell, treasureCount);
+                    List<Cell> nextPath = BreadthFirstSearch(graph, currCell);
                     for (int i = 1; i < nextPath.Count; i++)
                     {
                         currCellList.Add(nextPath[i]);
                     }
+
+                    List<Cell> findHome = BreadthFirstSearch(graph, currCell, 0);
+                    for (int i = 1; i < findHome.Count; i++)
+                    {
+                        currCellList.Add(findHome[i]);
+                    }
+
                     return currCellList;
                 }
 

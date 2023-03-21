@@ -13,7 +13,7 @@ namespace src
             List<List<Cell>> paths = algorithms.DepthFirstSearch(mapGraph);
             algorithms.DFSPathPrint(paths);
 
-            List<Cell> solutions = algorithms.BreathFirstSearch(mapGraph, mapGraph.EntryVertex, map.TreasureCount);
+            List<Cell> solutions = algorithms.BreadthFirstSearch(mapGraph, mapGraph.EntryVertex);
 
             Console.WriteLine("result path  :");
             foreach (var cell in solutions)
