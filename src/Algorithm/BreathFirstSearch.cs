@@ -61,6 +61,7 @@ namespace src
                         currCellList.Add(nextPath[i]);
                     }
 
+                    // Membuat rute kembali dari treasure paling terakhir
                     List<Cell> findHome = BreadthFirstSearch(graph, currCell, 0);
                     for (int i = 1; i < findHome.Count; i++)
                     {
