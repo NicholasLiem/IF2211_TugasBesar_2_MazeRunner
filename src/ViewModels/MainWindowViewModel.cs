@@ -193,19 +193,16 @@ namespace Maze.ViewModels
       // }
       // CellList = temp;
       Algorithms alg = new Algorithms();
-      List<List<Cell>> path = alg.DepthFirstSearch(map?.GetGraph());
+      Graph mapGraph = map?.GetGraph();
+      List<Cell> path = alg.BreadthFirstSearch(mapGraph, mapGraph.EntryVertex, false, 9);
 
-      // for (int i = 0; i < path.Count; i++)
-      // {
-      //   for (int j = 0; j < path[i].Count; j++)
-      //   {
-      //     Console.WriteLine(path[i][j].Row);
-      //     Console.WriteLine(path[i][j].Col);
-      //     Console.WriteLine("PPP");
-      //   }
-      //   Console.WriteLine("Halo");
-      // }
-      alg.DFSPathPrint(path);
+      for (int i = 0; i < path.Count; i++)
+      {
+        Console.WriteLine(path[i].Row);
+        Console.WriteLine(path[i].Col);
+        Console.WriteLine("Halo");
+      }
+      // alg.DFSPathPrint(path);
 
       for (int i = 0; i < _sequence.Count; i++)
       {
