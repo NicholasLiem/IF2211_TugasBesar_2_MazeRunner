@@ -11,7 +11,7 @@ namespace Maze.ViewModels
 {
   public class MainWindowViewModel : INotifyPropertyChanged
   {
-    public static int rows = 7, cols = 8;
+    public static int rows = 3, cols = 10;
     private int _sliderMax = (rows * cols) - 1;
     private int _rows = rows, _cols = cols;
     private int _gridHeight = Math.Min(600 / rows, 600 / cols) * rows;
@@ -23,11 +23,12 @@ namespace Maze.ViewModels
     private Cell[,] _cellList = new Cell[rows, cols];
     private List<Cell> _sequence = new List<Cell>();
     public event PropertyChangedEventHandler? PropertyChanged;
+    public Map? map;
 
     public MainWindowViewModel()
     {
       FileManager fileReader = new FileManager();
-      Map map = new Map("Maze4.txt");
+      map = new Map("Maze3.txt");
 
       for (int i = 0; i < rows; i++)
       {
@@ -191,9 +192,24 @@ namespace Maze.ViewModels
       //   }
       // }
       // CellList = temp;
+      Algorithms alg = new Algorithms();
+      List<List<Cell>> path = alg.DepthFirstSearch(map?.GetGraph());
+
+      // for (int i = 0; i < path.Count; i++)
+      // {
+      //   for (int j = 0; j < path[i].Count; j++)
+      //   {
+      //     Console.WriteLine(path[i][j].Row);
+      //     Console.WriteLine(path[i][j].Col);
+      //     Console.WriteLine("PPP");
+      //   }
+      //   Console.WriteLine("Halo");
+      // }
+      alg.DFSPathPrint(path);
+
       for (int i = 0; i < _sequence.Count; i++)
       {
-        Console.WriteLine(i);
+
         Cell[,] temp = new Cell[rows, cols];
         for (int j = 0; j < rows; j++)
         {
