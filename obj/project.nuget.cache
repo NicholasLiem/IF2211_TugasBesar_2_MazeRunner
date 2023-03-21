@@ -73,5 +73,12 @@
     "/home/rma1403/.nuget/packages/tmds.dbus/0.9.0/tmds.dbus.0.9.0.nupkg.sha512",
     "/home/rma1403/.nuget/packages/xamlnamereferencegenerator/1.6.1/xamlnamereferencegenerator.1.6.1.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file /home/rma1403/Documents/Programming/kuliah/Tubes2_MazeRunner/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

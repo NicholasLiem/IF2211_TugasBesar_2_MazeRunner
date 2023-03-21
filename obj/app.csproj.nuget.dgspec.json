@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Program Files\\ITBSTEIG\\SMT4\\Stima\\Tubes2_MazeRunner\\app.csproj": {}
+    "D:\\Insitut Teknologi Bandung\\ITB STEI-G\\SMT 4\\Stima\\Tubes\\Tubes2\\Tubes2_MazeRunner\\app.csproj": {}
   },
   "projects": {
-    "C:\\Program Files\\ITBSTEIG\\SMT4\\Stima\\Tubes2_MazeRunner\\app.csproj": {
+    "D:\\Insitut Teknologi Bandung\\ITB STEI-G\\SMT 4\\Stima\\Tubes\\Tubes2\\Tubes2_MazeRunner\\app.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Program Files\\ITBSTEIG\\SMT4\\Stima\\Tubes2_MazeRunner\\app.csproj",
+        "projectUniqueName": "D:\\Insitut Teknologi Bandung\\ITB STEI-G\\SMT 4\\Stima\\Tubes\\Tubes2\\Tubes2_MazeRunner\\app.csproj",
         "projectName": "app",
-        "projectPath": "C:\\Program Files\\ITBSTEIG\\SMT4\\Stima\\Tubes2_MazeRunner\\app.csproj",
-        "packagesPath": "C:\\Users\\hosea\\.nuget\\packages\\",
-        "outputPath": "C:\\Program Files\\ITBSTEIG\\SMT4\\Stima\\Tubes2_MazeRunner\\obj\\",
+        "projectPath": "D:\\Insitut Teknologi Bandung\\ITB STEI-G\\SMT 4\\Stima\\Tubes\\Tubes2\\Tubes2_MazeRunner\\app.csproj",
+        "packagesPath": "C:\\Users\\Hosea\\.nuget\\packages\\",
+        "outputPath": "D:\\Insitut Teknologi Bandung\\ITB STEI-G\\SMT 4\\Stima\\Tubes\\Tubes2\\Tubes2_MazeRunner\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hosea\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Hosea\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
