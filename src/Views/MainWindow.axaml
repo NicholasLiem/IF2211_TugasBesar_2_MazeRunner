@@ -13,22 +13,20 @@
 		</Style>
 	</Window.Styles>
 	<StackPanel Orientation="Horizontal">
-	<Slider Name="row" Minimum="0" Maximum="100" Value="{Binding Rows, Mode=TwoWay}" IsVisible="false"/>
-	<Slider Name="col" Minimum="0" Maximum="100" Value="{Binding Cols, Mode=TwoWay}" IsVisible="false"/>
 		<StackPanel>
-			<StackPanel Background="#FFFFFF" Width="1092" Height="746">
-				<Grid Margin="0,64,0,0">
+			<StackPanel Background="#FFFFFF" Width="1092" Height="746" Orientation="Horizontal">
+				<Grid Margin="246,0,0,0" VerticalAlignment="Center">
 					<ItemsControl Items="{Binding CellList}">
 						<ItemsControl.ItemsPanel>
 							<ItemsPanelTemplate>
-								<UniformGrid Rows="{Binding Rows}" Columns="{Binding Cols}" Width="600" Height="600" />
+								<UniformGrid Background="#000000" Rows="{Binding Rows}" Columns="{Binding Cols}" Width="{Binding GridWidth}" Height="{Binding GridHeight}"/>
 							</ItemsPanelTemplate>
 						</ItemsControl.ItemsPanel>
 
 						<ItemsControl.ItemTemplate>
 							<DataTemplate>
-								<Panel Background="{Binding Color}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4,4,4,4">
-									<TextBlock Text="{Binding Color}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+								<Panel Background="{Binding Color}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1,1,1,1">
+									<TextBlock Text="" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 								</Panel>
 							</DataTemplate>
 						</ItemsControl.ItemTemplate>

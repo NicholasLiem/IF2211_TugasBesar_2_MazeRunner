@@ -25,7 +25,7 @@ namespace Maze.Models
       {
         for (int j = 0; j < map.GetLength(1); j++)
         {
-          if (map[i, j].getType() == 9)
+          if (map[i, j].Type == 9)
           {
             List<int> treasurePosition = new List<int>();
             treasurePosition.Add(i);
@@ -42,7 +42,7 @@ namespace Maze.Models
       {
         for (int j = 0; j < map.GetLength(1); j++)
         {
-          if (map[i, j].getType() == 0)
+          if (map[i, j].Type == 0)
           {
             return map[i, j];
           }
@@ -66,33 +66,41 @@ namespace Maze.Models
         for (int j = 0; j < numCols; j++)
         {
           Cell item = matrixCell[i, j];
-          int type = item.getType();
+          int type = item.Type;
           if (type != 3)
           {
             if (type == 9)
             {
               Map.treasureCount++;
             }
-            graph.AddVertex(item);
 
-            if (i < numRows - 1 && matrixCell[i + 1, j].getType() != 3)
+            try
             {
-              graph.AddEdge(item, matrixCell[i + 1, j]);
+              graph.AddVertex(item);
+
+              if (i < numRows - 1 && matrixCell[i + 1, j].Type != 3)
+              {
+                graph.AddEdge(item, matrixCell[i + 1, j]);
+              }
+
+              if (i > 0 && matrixCell[i - 1, j].Type != 3)
+              {
+                graph.AddEdge(item, matrixCell[i - 1, j]);
+              }
+
+              if (j > 0 && matrixCell[i, j - 1].Type != 3)
+              {
+                graph.AddEdge(item, matrixCell[i, j - 1]);
+              }
+
+              if (j < numCols - 1 && matrixCell[i, j + 1].Type != 3)
+              {
+                graph.AddEdge(item, matrixCell[i, j + 1]);
+              }
             }
-
-            if (i > 0 && matrixCell[i - 1, j].getType() != 3)
+            catch (DuplicateVertexException e)
             {
-              graph.AddEdge(item, matrixCell[i - 1, j]);
-            }
-
-            if (j > 0 && matrixCell[i, j - 1].getType() != 3)
-            {
-              graph.AddEdge(item, matrixCell[i, j - 1]);
-            }
-
-            if (j < numCols - 1 && matrixCell[i, j + 1].getType() != 3)
-            {
-              graph.AddEdge(item, matrixCell[i, j + 1]);
+              Console.WriteLine("p");
             }
           }
         }

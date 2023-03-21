@@ -12,11 +12,11 @@ namespace Maze.Models
     private int rowSize;
     private int colSize;
     public static List<List<int>> treasureList = new List<List<int>>();
-    public Map()
+    public Map(string filename)
     {
       treasureCount = 0;
       this.cells = new Cell[0, 0];
-      fileReader.ReadFile(ref cells);
+      fileReader.ReadFile(ref cells, filename);
       this.rowSize = cells.GetLength(0);
       this.colSize = cells.GetLength(1);
       this.graph = Utils.registerVertex(ref cells);

@@ -6,17 +6,17 @@ namespace Maze.Models
   public partial class FileManager
   {
     static string basePath = Directory.GetCurrentDirectory();
-    public void ReadFile(ref Cell[,] cells)
+    public void ReadFile(ref Cell[,] cells, string fileName)
     {
 
-      Console.WriteLine("Enter the name of a text file in the 'test' folder:");
-      string? fileName = Console.ReadLine();
+      // Console.WriteLine("Enter the name of a text file in the 'test' folder:");
+      // string? fileName = Console.ReadLine();
 
-      while (fileName == null || fileName == "")
-      {
-        Console.WriteLine("Please enter a valid file name:");
-        fileName = Console.ReadLine();
-      }
+      // while (fileName == null || fileName == "")
+      // {
+      //   Console.WriteLine("Please enter a valid file name:");
+      //   fileName = Console.ReadLine();
+      // }
 
       string filePath = Path.Combine(basePath, "test", fileName);
 

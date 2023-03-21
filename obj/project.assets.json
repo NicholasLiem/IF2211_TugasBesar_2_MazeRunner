@@ -4166,16 +4166,11 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
     "/home/rma1403/.nuget/packages/": {}
-=======
-    "C:\\Users\\hosea\\.nuget\\packages\\": {}
->>>>>>> without-gui
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "/home/rma1403/Documents/Programming/kuliah/Tubes2_MazeRunner/Tubes2_MazeRunner.csproj",
       "projectName": "Tubes2_MazeRunner",
       "projectPath": "/home/rma1403/Documents/Programming/kuliah/Tubes2_MazeRunner/Tubes2_MazeRunner.csproj",
@@ -4184,16 +4179,6 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/rma1403/.nuget/NuGet/NuGet.Config"
-=======
-      "projectUniqueName": "C:\\Program Files\\ITBSTEIG\\SMT4\\Stima\\Tubes2_MazeRunner\\app.csproj",
-      "projectName": "app",
-      "projectPath": "C:\\Program Files\\ITBSTEIG\\SMT4\\Stima\\Tubes2_MazeRunner\\app.csproj",
-      "packagesPath": "C:\\Users\\hosea\\.nuget\\packages\\",
-      "outputPath": "C:\\Program Files\\ITBSTEIG\\SMT4\\Stima\\Tubes2_MazeRunner\\obj\\",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "C:\\Users\\hosea\\AppData\\Roaming\\NuGet\\NuGet.Config"
->>>>>>> without-gui
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -4249,11 +4234,7 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.113/RuntimeIdentifierGraph.json"
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
->>>>>>> without-gui
       }
     }
   }
