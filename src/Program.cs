@@ -13,7 +13,8 @@ namespace src
             List<List<Cell>> paths = algorithms.DepthFirstSearch(mapGraph);
             algorithms.DFSPathPrint(paths);
 
-            List<Cell> solutions = algorithms.BreadthFirstSearch(mapGraph, mapGraph.EntryVertex);
+            // tsp toggleable
+            List<Cell> solutions = algorithms.BreadthFirstSearch(mapGraph, mapGraph.EntryVertex, false, 9);
 
             Console.WriteLine("result path  :");
             foreach (var cell in solutions)

@@ -21,7 +21,7 @@ namespace src
         {
             get { return checklist; }
         }
-        public List<Cell> BreadthFirstSearch(Graph graph, Cell start, int type = 9)
+        public List<Cell> BreadthFirstSearch(Graph graph, Cell start, bool tsp, int type = 9)
         {
             // Untuk menyimpan cell-cell yang sudah dikunjungi pada saat iterasi
             List<Cell> checkedCells = new List<Cell>();
@@ -55,17 +55,20 @@ namespace src
                 {
                     solutionSpace.Add(currCell);
 
-                    List<Cell> nextPath = BreadthFirstSearch(graph, currCell);
+                    List<Cell> nextPath = BreadthFirstSearch(graph, currCell, tsp);
                     for (int i = 1; i < nextPath.Count; i++)
                     {
                         currCellList.Add(nextPath[i]);
                     }
 
-                    // Membuat rute kembali dari treasure paling terakhir
-                    List<Cell> findHome = BreadthFirstSearch(graph, currCell, 0);
-                    for (int i = 1; i < findHome.Count; i++)
+                    // Membuat rute kembali dari treasure paling terakhir jika ingin mencari rute kembali
+                    if (tsp)
                     {
-                        currCellList.Add(findHome[i]);
+                        List<Cell> findHome = BreadthFirstSearch(graph, currCell, tsp, 0);
+                        for (int i = 1; i < findHome.Count; i++)
+                        {
+                            currCellList.Add(findHome[i]);
+                        }
                     }
 
                     return currCellList;
