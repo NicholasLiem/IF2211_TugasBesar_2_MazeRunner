@@ -40,6 +40,8 @@
 		</StackPanel>
 
 		<StackPanel Background="#A9A9A9" Width="348" Height="810">
+			<TextBox Text="{Binding FileName, Mode=TwoWay}"/>
+
 			<Button Classes="search" Width="252" Height="81" FontSize="32" HorizontalAlignment="Center" Margin="0,364,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Command="{Binding HandleSearch}">Search !</Button>
 
 			<TextBlock Margin="48,48,48,0" Text="{Binding ExecTime, StringFormat='Execution Time : {0} ms'}"></TextBlock>

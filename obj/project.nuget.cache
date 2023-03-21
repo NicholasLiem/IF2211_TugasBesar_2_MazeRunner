@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "wMkhHgZt/iaFl1AwqBbK6Yyh22NepWrhU2TqmnTQkgCTLrFL/a4fuszlbVgVNZsnPNwhUdk7Epo8WAoIZJCHGw==",
+  "dgSpecHash": "S+1oxwoVWNRcM6XjHo55wZf1qq7HJid6udgEqWqd3+K9n/psr/YDpsHiMfXQiswlzsC9T1PiBCishy/eqMaYGA==",
   "success": true,
   "projectFilePath": "/home/rma1403/Documents/Programming/kuliah/Tubes2_MazeRunner/Tubes2_MazeRunner.csproj",
   "expectedPackageFiles": [
@@ -29,7 +29,7 @@
     "/home/rma1403/.nuget/packages/microsoft.csharp/4.3.0/microsoft.csharp.4.3.0.nupkg.sha512",
     "/home/rma1403/.nuget/packages/microsoft.netcore.platforms/2.1.2/microsoft.netcore.platforms.2.1.2.nupkg.sha512",
     "/home/rma1403/.nuget/packages/microsoft.netcore.targets/1.1.0/microsoft.netcore.targets.1.1.0.nupkg.sha512",
-    "/home/rma1403/.nuget/packages/microsoft.win32.systemevents/4.5.0/microsoft.win32.systemevents.4.5.0.nupkg.sha512",
+    "/home/rma1403/.nuget/packages/microsoft.win32.systemevents/7.0.0/microsoft.win32.systemevents.7.0.0.nupkg.sha512",
     "/home/rma1403/.nuget/packages/skiasharp/2.88.1-preview.108/skiasharp.2.88.1-preview.108.nupkg.sha512",
     "/home/rma1403/.nuget/packages/skiasharp.nativeassets.linux/2.88.1-preview.108/skiasharp.nativeassets.linux.2.88.1-preview.108.nupkg.sha512",
     "/home/rma1403/.nuget/packages/skiasharp.nativeassets.macos/2.88.1-preview.108/skiasharp.nativeassets.macos.2.88.1-preview.108.nupkg.sha512",
@@ -39,7 +39,7 @@
     "/home/rma1403/.nuget/packages/system.collections.immutable/1.5.0/system.collections.immutable.1.5.0.nupkg.sha512",
     "/home/rma1403/.nuget/packages/system.componentmodel.annotations/4.5.0/system.componentmodel.annotations.4.5.0.nupkg.sha512",
     "/home/rma1403/.nuget/packages/system.diagnostics.debug/4.3.0/system.diagnostics.debug.4.3.0.nupkg.sha512",
-    "/home/rma1403/.nuget/packages/system.drawing.common/4.5.0/system.drawing.common.4.5.0.nupkg.sha512",
+    "/home/rma1403/.nuget/packages/system.drawing.common/7.0.0/system.drawing.common.7.0.0.nupkg.sha512",
     "/home/rma1403/.nuget/packages/system.dynamic.runtime/4.3.0/system.dynamic.runtime.4.3.0.nupkg.sha512",
     "/home/rma1403/.nuget/packages/system.globalization/4.3.0/system.globalization.4.3.0.nupkg.sha512",
     "/home/rma1403/.nuget/packages/system.io/4.3.0/system.io.4.3.0.nupkg.sha512",
@@ -73,12 +73,5 @@
     "/home/rma1403/.nuget/packages/tmds.dbus/0.9.0/tmds.dbus.0.9.0.nupkg.sha512",
     "/home/rma1403/.nuget/packages/xamlnamereferencegenerator/1.6.1/xamlnamereferencegenerator.1.6.1.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file /home/rma1403/Documents/Programming/kuliah/Tubes2_MazeRunner/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }
