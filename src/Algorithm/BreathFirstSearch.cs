@@ -36,7 +36,7 @@ namespace src
             checkQueue.Enqueue(checkPath);
 
             // mulai bfs dengan queue dengan kondisi bahwa queue masih ada atau semua Treasure belum ditemukan
-            while (checkQueue.Count > 0 && treasureFound < treasureCount)
+            while (checkQueue.Count > 0)
             {
                 // Mengambil elemen terakhir dari list untuk dikunjungi
                 var currCellList = checkQueue.Dequeue();
@@ -60,10 +60,13 @@ namespace src
 
                     solutionSpace.Add(currCell);
 
-                    List<Cell> nextPath = BreadthFirstSearch(graph, currCell, treasureCount, tsp);
-                    for (int i = 1; i < nextPath.Count; i++)
+                    if (treasureFound < treasureCount)
                     {
-                        currCellList.Add(nextPath[i]);
+                        List<Cell> nextPath = BreadthFirstSearch(graph, currCell, treasureCount, tsp);
+                        for (int i = 1; i < nextPath.Count; i++)
+                        {
+                            currCellList.Add(nextPath[i]);
+                        }
                     }
 
                     // Membuat rute kembali dari treasure paling terakhir jika ingin mencari rute kembali

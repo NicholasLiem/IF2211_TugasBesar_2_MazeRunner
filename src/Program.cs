@@ -14,7 +14,7 @@ namespace src
             algorithms.DFSPathPrint(paths);
 
             // tsp toggleable
-            List<Cell> solutions = algorithms.BreadthFirstSearch(mapGraph, mapGraph.EntryVertex, map.TreasureCount, false, 9);
+            List<Cell> solutions = algorithms.BreadthFirstSearch(mapGraph, mapGraph.EntryVertex, map.TreasureCount, true, 9);
 
             Console.WriteLine("result path  :");
             foreach (var cell in solutions)
