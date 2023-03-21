@@ -17,11 +17,14 @@ namespace src
         private static List<Cell> checklist = new List<Cell>();
         // menyimpan list pengecekan pada setiap iterasi bfs
 
+        private static int treasureFound = 0;
+        // menyimpan banyak treasure yang sudah ditemukan
+
         public List<Cell> CheckList
         {
             get { return checklist; }
         }
-        public List<Cell> BreadthFirstSearch(Graph graph, Cell start, bool tsp, int type = 9)
+        public List<Cell> BreadthFirstSearch(Graph graph, Cell start, int treasureCount, bool tsp, int type = 9)
         {
             // Untuk menyimpan cell-cell yang sudah dikunjungi pada saat iterasi
             List<Cell> checkedCells = new List<Cell>();
@@ -33,7 +36,7 @@ namespace src
             checkQueue.Enqueue(checkPath);
 
             // mulai bfs dengan queue dengan kondisi bahwa queue masih ada atau semua Treasure belum ditemukan
-            while (checkQueue.Count > 0)
+            while (checkQueue.Count > 0 && treasureFound < treasureCount)
             {
                 // Mengambil elemen terakhir dari list untuk dikunjungi
                 var currCellList = checkQueue.Dequeue();
@@ -53,9 +56,11 @@ namespace src
                 // jika cell adalah treasure, akan dilakukan bfs lagi dari treasure tersebut dan jalur akan digabungkan dan menjadi solusi
                 if (currCell.getType() == type && !currCell.isEqual(start) && !solutionSpace.Contains(currCell))
                 {
+                    treasureFound++;
+
                     solutionSpace.Add(currCell);
 
-                    List<Cell> nextPath = BreadthFirstSearch(graph, currCell, tsp);
+                    List<Cell> nextPath = BreadthFirstSearch(graph, currCell, treasureCount, tsp);
                     for (int i = 1; i < nextPath.Count; i++)
                     {
                         currCellList.Add(nextPath[i]);
@@ -64,7 +69,7 @@ namespace src
                     // Membuat rute kembali dari treasure paling terakhir jika ingin mencari rute kembali
                     if (tsp)
                     {
-                        List<Cell> findHome = BreadthFirstSearch(graph, currCell, tsp, 0);
+                        List<Cell> findHome = BreadthFirstSearch(graph, currCell, treasureCount, tsp, 0);
                         for (int i = 1; i < findHome.Count; i++)
                         {
                             currCellList.Add(findHome[i]);
