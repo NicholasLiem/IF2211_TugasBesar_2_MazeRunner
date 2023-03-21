@@ -73,34 +73,26 @@ namespace Maze.Models
             {
               Map.treasureCount++;
             }
+            graph.AddVertex(item);
 
-            try
+            if (i < numRows - 1 && matrixCell[i + 1, j].Type != 3)
             {
-              graph.AddVertex(item);
-
-              if (i < numRows - 1 && matrixCell[i + 1, j].Type != 3)
-              {
-                graph.AddEdge(item, matrixCell[i + 1, j]);
-              }
-
-              if (i > 0 && matrixCell[i - 1, j].Type != 3)
-              {
-                graph.AddEdge(item, matrixCell[i - 1, j]);
-              }
-
-              if (j > 0 && matrixCell[i, j - 1].Type != 3)
-              {
-                graph.AddEdge(item, matrixCell[i, j - 1]);
-              }
-
-              if (j < numCols - 1 && matrixCell[i, j + 1].Type != 3)
-              {
-                graph.AddEdge(item, matrixCell[i, j + 1]);
-              }
+              graph.AddEdge(item, matrixCell[i + 1, j]);
             }
-            catch (DuplicateVertexException e)
+
+            if (i > 0 && matrixCell[i - 1, j].Type != 3)
             {
-              Console.WriteLine("p");
+              graph.AddEdge(item, matrixCell[i - 1, j]);
+            }
+
+            if (j > 0 && matrixCell[i, j - 1].Type != 3)
+            {
+              graph.AddEdge(item, matrixCell[i, j - 1]);
+            }
+
+            if (j < numCols - 1 && matrixCell[i, j + 1].Type != 3)
+            {
+              graph.AddEdge(item, matrixCell[i, j + 1]);
             }
           }
         }

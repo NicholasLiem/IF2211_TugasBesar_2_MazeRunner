@@ -297,7 +297,7 @@ namespace Maze.ViewModels
 
       Algorithms algorithm = new Algorithms();
       Graph mapGraph = map?.GetGraph() ?? new Graph(new Cell(0, 0, -1));
-      _path = algorithm.BreadthFirstSearch(mapGraph, mapGraph.EntryVertex, map.TreasureCount, false, 9);
+      _path = algorithm.BreadthFirstSearch(mapGraph, mapGraph.EntryVertex, map.TreasureCount, true, 9);
       // List<List<Cell>> path = algorithm.DepthFirstSearch(mapGraph);
       // algorithm.DFSPathPrint(path);
       // foreach (List<Cell> p in path)
@@ -314,7 +314,7 @@ namespace Maze.ViewModels
       _sequence = algorithm.CheckList;
       foreach (Cell c in _sequence)
       {
-        Console.WriteLine(c.Row + " " + c.Col);
+        c.printCell();
       }
       // foreach (Cell c in path)
       // {

@@ -62,10 +62,10 @@ namespace Maze.Models
       {
         _adjacencyList.Add(vertex, new List<Cell>());
       }
-      else
-      {
-        throw new DuplicateVertexException();
-      }
+      // else
+      // {
+      //   throw new DuplicateVertexException();
+      // }
     }
 
     /// <summary>
