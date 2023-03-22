@@ -10,24 +10,24 @@ namespace src
             Algorithms algorithms = new Algorithms();
             Map map = new Map();
             Graph mapGraph = map.GetGraph();
-            List<List<Cell>> paths = algorithms.DepthFirstSearch(mapGraph);
+            List<Cell> paths = algorithms.DepthFirstSearch(mapGraph);
             algorithms.DFSPathPrint(paths);
 
             // tsp toggleable
-            List<Cell> solutions = algorithms.BreadthFirstSearch(mapGraph, mapGraph.EntryVertex, map.TreasureCount, true, 9);
+            // List<Cell> solutions = algorithms.BreadthFirstSearch(mapGraph, mapGraph.EntryVertex, map.TreasureCount, true, 9);
 
-            Console.WriteLine("result path  :");
-            foreach (var cell in solutions)
-            {
-                cell.printCell();
-            }
+            // Console.WriteLine("result path  :");
+            // foreach (var cell in solutions)
+            // {
+            //     cell.printCell();
+            // }
 
-            Console.WriteLine("checklist    :");
-            foreach (var cell in algorithms.CheckList)
-            {
-                cell.printCell();
-            }
-            Console.WriteLine();
+            // Console.WriteLine("checklist    :");
+            // foreach (var cell in algorithms.CheckList)
+            // {
+            //     cell.printCell();
+            // }
+            // Console.WriteLine();
             map.PrintTreasureCount();
         }
     }

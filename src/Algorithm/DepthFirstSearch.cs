@@ -3,64 +3,68 @@ using System.Linq;
 
 namespace src {
     public partial class Algorithms {
-        public List<List<Cell>> DepthFirstSearch(Graph graph) {
-            List<List<Cell>> pathToTreasure = new List<List<Cell>>();
+        public List<Cell> DepthFirstSearch(Graph graph) {
 
+            Stack<Cell> paths = new Stack<Cell>();
             Stack<Cell> availableNodes = new Stack<Cell>();
             HashSet<Cell> visitedNodes = new HashSet<Cell>();
-
             Stack<Cell> candidatePath = new Stack<Cell>();
 
             availableNodes.Push(graph.EntryVertex);
 
-            Cell lastTreasure = new Cell(-1, -1, -1);
-            
             while (availableNodes.Count > 0) {
-
                 Cell currentCell = availableNodes.Pop();
+
                 visitedNodes.Add(currentCell);
                 candidatePath.Push(currentCell);
-                List<Cell> edges = graph.GetCellNeighbors(currentCell);
+                paths.Push(currentCell);
 
-                if (currentCell.getType() == 9) {
-                    lastTreasure = currentCell;
-                    List<Cell> path = new List<Cell>(candidatePath.Reverse());
-                    pathToTreasure.Add(path);
+                currentCell.addVisitedCount();
+                
+                if (candidatePathHasAllTreasures(candidatePath.Reverse().ToList(), Map.treasureCells)) {
+                    return candidatePath.Reverse().ToList();
                 }
 
-                // bool addToBacktrackingPath = false;
+                bool isDeadEnd = true;
+                List<Cell> edges = graph.GetCellNeighbors(currentCell);
                 foreach (Cell cell in edges) {
                     if (!visitedNodes.Contains(cell) && !availableNodes.Contains(cell)) {
                         availableNodes.Push(cell);
-                        cell.addVisitedCount();
-                        // addToBacktrackingPath = true;
+                        isDeadEnd = false;
                     }
                 }
 
-                // If the current node is not a treasure, backtrack to the last branching node
-            //     if (!addToBacktrackingPath) {                    
-            //         while (candidatePath.Count > 0
-            //                 && !(candidatePath.Peek().Equals(lastTreasure))) {
-            //             candidatePath.Pop();
-            //         }
-            //     }
+                while(isDeadEnd && paths.Count > 0){
+                    Cell lastCell = paths.Pop();
+                    candidatePath.Push(lastCell);
+                    lastCell.addVisitedCount();
+                    List<Cell> lastCellEdges = graph.GetCellNeighbors(lastCell);
+                    foreach (Cell cell in lastCellEdges) {
+                        if (!paths.Contains(cell) && !visitedNodes.Contains(cell)) {
+                            isDeadEnd = false;
+                        }
+                    }
+                }
             }
 
-            return pathToTreasure;
+            return new List<Cell>();
         }
 
-
-        public void DFSPathPrint(List<List<Cell>> pathToTreasure) {
-            int totalTreasureCount = Map.treasureCount;
+        public void DFSPathPrint(List<Cell> pathToTreasure) {
             System.Console.WriteLine("Path: ");
-            foreach (List<Cell> path in pathToTreasure) {
-                int treasureCount = path.Count(cell => cell.getType() == 9);
-                if (treasureCount == totalTreasureCount) {
-                    foreach (Cell cell in path) {
-                        cell.printCell();
-                    }
+            foreach (Cell cell in pathToTreasure) {
+                cell.printCell();
+            }
+        }
+
+        public Boolean candidatePathHasAllTreasures(List<Cell> candidatePaths, HashSet<Cell> treasures) {
+            int treasureCount = 0;
+            foreach (Cell cell in new List<Cell>(candidatePaths.Distinct())) {
+                if (cell.getType() == 9) {
+                    treasureCount++;
                 }
             }
+            return treasureCount == treasures.Count;
         }
 
     }

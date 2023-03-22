@@ -13,18 +13,14 @@ namespace src{
             Console.WriteLine();
         }
 
-        public static Cell findTreasurePositions(ref List<List<int>> treasureList, ref Cell[,] map){
+        public static void findTreasurePositions(ref HashSet<Cell> treasurePoints, ref Cell[,] map){
             for(int i = 0; i < map.GetLength(0); i++){
                 for(int j = 0; j < map.GetLength(1); j++){
                     if(map[i,j].getType() == 9){
-                        List<int> treasurePosition = new List<int>();
-                        treasurePosition.Add(i);
-                        treasurePosition.Add(j);
-                        treasureList.Add(treasurePosition);
+                        treasurePoints.Add(map[i,j]);
                     }
                 }
             }
-            return new Cell(-1,-1,-1);
         }
         public static Cell findEntryPoint(ref Cell[,] map){
             for(int i = 0; i < map.GetLength(0); i++){

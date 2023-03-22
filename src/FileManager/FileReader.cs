@@ -45,14 +45,13 @@ namespace src{
                                 type = 3;
                                 break;
                             default:
-                                Console.WriteLine("Simbol tidak dikenali");
-                                break;
+                                throw new UnknownSymbolReading();
                         }
                         cells[i,j] = new Cell(i, j, type);
                     }
                 }
             } else {
-                Console.WriteLine("Invalid file path or file type.");
+                throw new UnkownFileReading();
             }
         }
         public void ShowFilesInFolder(){
