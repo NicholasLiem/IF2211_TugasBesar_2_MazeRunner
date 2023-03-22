@@ -5,14 +5,12 @@ namespace src
     public class Cell
     {
         private int _row, _col, _type, _visitedCount;
-        private bool _visited;
 
         public Cell(int row, int col, int type)
         {
             _row = row;
             _col = col;
             _type = type;
-            _visited = false;
         }
 
         public int getVisitedCount()
@@ -50,15 +48,6 @@ namespace src
             _col = col;
         }
 
-        public bool isVisited()
-        {
-            return _visited;
-        }
-
-        public void setVisited(bool visited)
-        {
-            _visited = visited;
-        }
 
         public int getType()
         {
@@ -80,7 +69,6 @@ namespace src
             int Row = _row;
             int Col = _col;
             int Type = _type;
-            String Visited = _visited.ToString();
             String typePrint = "";
             switch (Type)
             {
