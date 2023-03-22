@@ -28,22 +28,22 @@ namespace src {
                     pathToTreasure.Add(path);
                 }
 
-                bool addToBacktrackingPath = false;
+                // bool addToBacktrackingPath = false;
                 foreach (Cell cell in edges) {
                     if (!visitedNodes.Contains(cell) && !availableNodes.Contains(cell)) {
                         availableNodes.Push(cell);
                         cell.addVisitedCount();
-                        addToBacktrackingPath = true;
+                        // addToBacktrackingPath = true;
                     }
                 }
 
                 // If the current node is not a treasure, backtrack to the last branching node
-                if (!addToBacktrackingPath) {                    
-                    while (candidatePath.Count > 0
-                            && !(candidatePath.Peek().Equals(lastTreasure))) {
-                        candidatePath.Pop();
-                    }
-                }
+            //     if (!addToBacktrackingPath) {                    
+            //         while (candidatePath.Count > 0
+            //                 && !(candidatePath.Peek().Equals(lastTreasure))) {
+            //             candidatePath.Pop();
+            //         }
+            //     }
             }
 
             return pathToTreasure;
