@@ -72,7 +72,7 @@ namespace Maze.Models
           }
 
           // Membuat rute kembali dari treasure paling terakhir jika ingin mencari rute kembali
-          if (tsp)
+          else if (tsp)
           {
             List<Cell> findHome = BreadthFirstSearch(graph, currCell, treasureCount, false, 0);
             for (int i = 1; i < findHome.Count; i++)
