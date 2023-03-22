@@ -52,18 +52,23 @@ namespace src{
                         }
                         graph.AddVertex(item);
                         
+                        // Pendaftaran edge sebelah kiri
                         if(i < numRows-1 && matrixCell[i+1,j].getType() != 3){
                             graph.AddEdge(item, matrixCell[i+1,j]);
                         }
-                        
+
+
+                        // Pendaftaran edge sebelah atas
                         if(i > 0 && matrixCell[i-1,j].getType() != 3){
                             graph.AddEdge(item, matrixCell[i-1,j]);
                         }
-                        
+
+                        // Pendaftaran edge sebelah kanan
                         if(j > 0 && matrixCell[i,j-1].getType() != 3){
                             graph.AddEdge(item, matrixCell[i,j-1]);
                         }
-                        
+
+                        // Pendaftaran edge sebelah bawah
                         if(j < numCols-1 && matrixCell[i,j+1].getType() != 3){
                             graph.AddEdge(item, matrixCell[i,j+1]);
                         }
