@@ -297,25 +297,25 @@ namespace Maze.ViewModels
 
       Algorithms algorithm = new Algorithms();
       Graph mapGraph = map?.GetGraph() ?? new Graph(new Cell(0, 0, -1));
-      _path = algorithm.BreadthFirstSearch(mapGraph, mapGraph.EntryVertex, map.TreasureCount, true, 9);
-      // List<List<Cell>> path = algorithm.DepthFirstSearch(mapGraph);
-      // algorithm.DFSPathPrint(path);
-      // foreach (List<Cell> p in path)
-      // {
-      //   int treasureCount = p.Count(cell => cell.Type == 9);
-      //   if (treasureCount == Map.treasureCount)
-      //   {
-      //     foreach (Cell cell in p)
-      //     {
-      //       _sequence.Add(cell);
-      //     }
-      //   }
-      // }
-      _sequence = algorithm.CheckList;
-      foreach (Cell c in _sequence)
+      List<Cell> _path1 = algorithm.BreadthFirstSearch(mapGraph, mapGraph.EntryVertex, map.TreasureCount, true, 9);
+      List<List<Cell>> path = algorithm.DepthFirstSearch(mapGraph);
+      algorithm.DFSPathPrint(path);
+      foreach (List<Cell> p in path)
       {
-        c.printCell();
+        int treasureCount = p.Count(cell => cell.Type == 9);
+        if (treasureCount == Map.treasureCount)
+        {
+          foreach (Cell cell in p)
+          {
+            _path.Add(cell);
+          }
+        }
       }
+      _sequence = algorithm.CheckList;
+      // foreach (Cell c in _sequence)
+      // {
+      //   c.printCell();
+      // }
       // foreach (Cell c in path)
       // {
       //   Console.WriteLine(c.Row + " " + c.Col);
@@ -328,7 +328,7 @@ namespace Maze.ViewModels
       // }
       foreach (Cell p in _path)
       {
-        Console.WriteLine(p.Row + " " + p.Col);
+        p.printCell();
       }
       SliderMax = _sequence.Count;
 

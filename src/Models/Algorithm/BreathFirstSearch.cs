@@ -57,6 +57,7 @@ namespace Maze.Models
         // jika cell adalah treasure, akan dilakukan bfs lagi dari treasure tersebut dan jalur akan digabungkan dan menjadi solusi
         if (currCell.Type == type && !currCell.isEqual(start) && !solutionSpace.Contains(currCell))
         {
+          Console.WriteLine("Shalom11");
           treasureFound++;
 
           solutionSpace.Add(currCell);
@@ -73,13 +74,14 @@ namespace Maze.Models
           // Membuat rute kembali dari treasure paling terakhir jika ingin mencari rute kembali
           if (tsp)
           {
-            List<Cell> findHome = BreadthFirstSearch(graph, currCell, treasureCount, tsp, 0);
+            List<Cell> findHome = BreadthFirstSearch(graph, currCell, treasureCount, false, 0);
             for (int i = 1; i < findHome.Count; i++)
             {
+              Console.WriteLine("Shalom");
               currCellList.Add(findHome[i]);
             }
           }
-
+          Console.WriteLine("Shalom222222222");
           return currCellList;
         }
 
