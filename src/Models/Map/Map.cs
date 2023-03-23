@@ -11,7 +11,7 @@ namespace Maze.Models
     private Graph graph;
     private int rowSize;
     private int colSize;
-    public static List<List<int>> treasureList = new List<List<int>>();
+    public static HashSet<Cell> treasureCells = new HashSet<Cell>();
     public Map(string filename)
     {
       treasureCount = 0;
@@ -20,7 +20,7 @@ namespace Maze.Models
       this.rowSize = cells.GetLength(0);
       this.colSize = cells.GetLength(1);
       this.graph = Utils.registerVertex(ref cells);
-      Utils.findTreasurePositions(ref treasureList, ref cells);
+      Utils.findTreasurePositions(ref treasureCells, ref cells);
     }
 
     public int TreasureCount

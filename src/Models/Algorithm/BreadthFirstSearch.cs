@@ -68,7 +68,6 @@ namespace Maze.Models
         // jika cell adalah treasure, akan dilakukan bfs lagi dari treasure tersebut dan jalur akan digabungkan dan menjadi solusi
         if (currCell.Type == type && !currCell.isEqual(start) && !solutionSpace.Contains(currCell))
         {
-          Console.WriteLine("Shalom11");
           treasureFound++;
 
           solutionSpace.Add(currCell);

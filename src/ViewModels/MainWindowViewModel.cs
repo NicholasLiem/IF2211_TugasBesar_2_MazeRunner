@@ -443,18 +443,18 @@ namespace Maze.ViewModels
 
       if (_isDFS)
       {
-        List<List<Cell>> temp = algorithm.DepthFirstSearch(mapGraph);
-        foreach (List<Cell> p in temp)
-        {
-          int treasureCount = p.Count(cell => cell.Type == 9);
-          if (treasureCount == Map.treasureCount)
-          {
-            foreach (Cell cell in p)
-            {
-              _path.Add(cell);
-            }
-          }
-        }
+        _path = algorithm.DepthFirstSearch(mapGraph);
+        // foreach (List<Cell> p in temp)
+        // {
+        //   int treasureCount = p.Count(cell => cell.Type == 9);
+        //   if (treasureCount == Map.treasureCount)
+        //   {
+        //     foreach (Cell cell in p)
+        //     {
+        //       _path.Add(cell);
+        //     }
+        //   }
+        // }
         _sequence = _path;
       }
       else

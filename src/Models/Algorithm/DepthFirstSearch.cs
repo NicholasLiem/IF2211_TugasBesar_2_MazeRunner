@@ -5,75 +5,103 @@ namespace Maze.Models
 {
   public partial class Algorithms
   {
-    public List<List<Cell>> DepthFirstSearch(Graph graph)
+    public List<Cell> DepthFirstSearch(Graph graph)
     {
-      List<List<Cell>> pathToTreasure = new List<List<Cell>>();
 
+
+      /* 
+          Inisialisasi stack untuk menyimpan jalur yang sudah ditempuh
+      */
+      Stack<Cell> paths = new Stack<Cell>();
       Stack<Cell> availableNodes = new Stack<Cell>();
       HashSet<Cell> visitedNodes = new HashSet<Cell>();
-
       Stack<Cell> candidatePath = new Stack<Cell>();
 
+
+      /* Pendaftaran entryVertex ke dalam availableNodes */
       availableNodes.Push(graph.EntryVertex);
 
-      Cell lastTreasure = new Cell(-1, -1, -1);
-
+      /* 
+          Proses pencarian jalur dengan DFS
+      */
       while (availableNodes.Count > 0)
       {
 
+        /* Mengambil cell yang ada di availableNodes */
         Cell currentCell = availableNodes.Pop();
+
+        /* 
+            Tambahkan cell di visitedNodes dan candidatePath dan paths
+        */
         visitedNodes.Add(currentCell);
         candidatePath.Push(currentCell);
-        List<Cell> edges = graph.GetCellNeighbors(currentCell);
+        paths.Push(currentCell);
 
-        if (currentCell.Type == 9)
+        currentCell.VisitedCount++;
+
+        /* Kalau sudah ditemukan solusi, maka keluarkan solusinya */
+        if (candidatePathHasAllTreasures(candidatePath.Reverse().ToList(), Map.treasureCells))
         {
-          lastTreasure = currentCell;
-          List<Cell> path = new List<Cell>(candidatePath.Reverse());
-          pathToTreasure.Add(path);
+          return candidatePath.Reverse().ToList();
         }
 
-        // bool addToBacktrackingPath = false;
+        /* Cek apakah suatu sel ini adalah dead end*/
+        bool isDeadEnd = true;
+        List<Cell> edges = graph.GetCellNeighbors(currentCell);
         foreach (Cell cell in edges)
         {
           if (!visitedNodes.Contains(cell) && !availableNodes.Contains(cell))
           {
             availableNodes.Push(cell);
-            cell.VisitedCount++;
-            // addToBacktrackingPath = true;
+            isDeadEnd = false;
           }
         }
 
-        // If the current node is not a treasure, backtrack to the last branching node
-        // if (!addToBacktrackingPath)
-        // {
-        //   while (candidatePath.Count > 0
-        //           && !(candidatePath.Peek().Equals(lastTreasure)))
-        //   {
-        //     candidatePath.Pop();
-        //   }
-        // }
+        /* 
+            Jika suatu sel adalah dead end, maka hapus sel tersebut dari paths
+            dan tambahkan sel tersebut ke candidatePath supaya bisa menambahkan pathsnya
+            supaya bisa menambahkan pathsnya menuju backtracking path.
+        */
+
+        while (isDeadEnd && paths.Count > 0)
+        {
+          Cell lastCell = paths.Pop();
+          candidatePath.Push(lastCell);
+          lastCell.VisitedCount++;
+          List<Cell> lastCellEdges = graph.GetCellNeighbors(lastCell);
+          foreach (Cell cell in lastCellEdges)
+          {
+            if (!paths.Contains(cell) && !visitedNodes.Contains(cell))
+            {
+              isDeadEnd = false;
+            }
+          }
+        }
       }
 
-      return pathToTreasure;
+      return new List<Cell>();
     }
 
-
-    public void DFSPathPrint(List<List<Cell>> pathToTreasure)
+    public void DFSPathPrint(List<Cell> pathToTreasure)
     {
-      int totalTreasureCount = Map.treasureCount;
       System.Console.WriteLine("Path: ");
-      foreach (List<Cell> path in pathToTreasure)
+      foreach (Cell cell in pathToTreasure)
       {
-        int treasureCount = path.Count(cell => cell.Type == 9);
-        if (treasureCount == totalTreasureCount)
+        cell.printCell();
+      }
+    }
+
+    public bool candidatePathHasAllTreasures(List<Cell> candidatePaths, HashSet<Cell> treasures)
+    {
+      int treasureCount = 0;
+      foreach (Cell cell in new List<Cell>(candidatePaths.Distinct()))
+      {
+        if (cell.Type == 9)
         {
-          foreach (Cell cell in path)
-          {
-            cell.printCell();
-          }
+          treasureCount++;
         }
       }
+      return treasureCount == treasures.Count;
     }
 
   }

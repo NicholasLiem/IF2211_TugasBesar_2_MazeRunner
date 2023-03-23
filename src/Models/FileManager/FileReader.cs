@@ -17,6 +17,7 @@ namespace Maze.Models
       //   Console.WriteLine("Please enter a valid file name:");
       //   fileName = Console.ReadLine();
       // }
+
       string filePath = Path.Combine(basePath, "test", fileName);
 
       if (File.Exists(filePath) && Path.GetExtension(filePath) == ".txt")
@@ -51,8 +52,7 @@ namespace Maze.Models
                 type = 3;
                 break;
               default:
-                Console.WriteLine("Simbol tidak dikenali");
-                break;
+                throw new UnknownSymbolReading();
             }
             cells[i, j] = new Cell(i, j, type);
           }
@@ -60,7 +60,7 @@ namespace Maze.Models
       }
       else
       {
-        Console.WriteLine("Invalid file path or file type.");
+        throw new UnkownFileReading();
       }
     }
     public void ShowFilesInFolder()

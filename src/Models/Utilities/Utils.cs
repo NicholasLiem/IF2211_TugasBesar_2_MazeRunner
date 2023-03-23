@@ -19,7 +19,7 @@ namespace Maze.Models
       Console.WriteLine();
     }
 
-    public static Cell findTreasurePositions(ref List<List<int>> treasureList, ref Cell[,] map)
+    public static void findTreasurePositions(ref HashSet<Cell> treasurePoints, ref Cell[,] map)
     {
       for (int i = 0; i < map.GetLength(0); i++)
       {
@@ -27,14 +27,10 @@ namespace Maze.Models
         {
           if (map[i, j].Type == 9)
           {
-            List<int> treasurePosition = new List<int>();
-            treasurePosition.Add(i);
-            treasurePosition.Add(j);
-            treasureList.Add(treasurePosition);
+            treasurePoints.Add(map[i, j]);
           }
         }
       }
-      return new Cell(-1, -1, -1);
     }
     public static Cell findEntryPoint(ref Cell[,] map)
     {
@@ -75,21 +71,26 @@ namespace Maze.Models
             }
             graph.AddVertex(item);
 
+            // Pendaftaran edge sebelah kiri
             if (i < numRows - 1 && matrixCell[i + 1, j].Type != 3)
             {
               graph.AddEdge(item, matrixCell[i + 1, j]);
             }
 
+
+            // Pendaftaran edge sebelah atas
             if (i > 0 && matrixCell[i - 1, j].Type != 3)
             {
               graph.AddEdge(item, matrixCell[i - 1, j]);
             }
 
+            // Pendaftaran edge sebelah kanan
             if (j > 0 && matrixCell[i, j - 1].Type != 3)
             {
               graph.AddEdge(item, matrixCell[i, j - 1]);
             }
 
+            // Pendaftaran edge sebelah bawah
             if (j < numCols - 1 && matrixCell[i, j + 1].Type != 3)
             {
               graph.AddEdge(item, matrixCell[i, j + 1]);
