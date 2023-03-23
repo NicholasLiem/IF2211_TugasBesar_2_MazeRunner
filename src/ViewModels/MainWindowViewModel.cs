@@ -443,17 +443,22 @@ namespace Maze.ViewModels
     {
       Algorithms algorithm = new Algorithms();
       Graph mapGraph = _map?.GetGraph() ?? new Graph(new Cell(0, 0, -1));
+      var watch = System.Diagnostics.Stopwatch.StartNew();
 
       if (_isDFS)
       {
         _sequence = algorithm.DepthFirstSearch(mapGraph, _map);
         _path = _sequence;
+        watch.Stop();
       }
       else
       {
         _path = algorithm.BreadthFirstSearch(mapGraph, mapGraph.EntryVertex, _map.TreasureCount, _isTSPOn, 9);
         _sequence = algorithm.CheckList;
+        watch.Stop();
       }
+
+      ExecTime = watch.ElapsedMilliseconds;
 
       SliderMax = _sequence.Count;
 

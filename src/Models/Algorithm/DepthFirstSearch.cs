@@ -8,8 +8,6 @@ namespace Maze.Models
   {
     public List<Cell> DepthFirstSearch(Graph graph, Map map)
     {
-      Console.WriteLine("START");
-
       /* 
           Inisialisasi stack untuk menyimpan jalur yang sudah ditempuh
       */
@@ -36,12 +34,6 @@ namespace Maze.Models
         candidatePath.Push(currentCell);
         paths.Push(currentCell);
         currentCell.VisitedCount++;
-
-        foreach (Cell c in candidatePath)
-        {
-          c.printCell();
-        }
-        Console.WriteLine("Halo");
 
         /* Kalau sudah ditemukan solusi, maka keluarkan solusinya */
         if (candidatePathHasAllTreasures(candidatePath.Reverse().ToList(), map.treasureCells))
