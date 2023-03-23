@@ -24,6 +24,17 @@ namespace Maze.Models
     public List<Cell> CheckList
     {
       get { return checklist; }
+      set { checklist = value; }
+    }
+    public List<Cell> SolutionSpace
+    {
+      get { return solutionSpace; }
+      set { solutionSpace = value; }
+    }
+    public int TreasureFound
+    {
+      get { return treasureFound; }
+      set { treasureFound = value; }
     }
     public List<Cell> BreadthFirstSearch(Graph graph, Cell start, int treasureCount, bool tsp, int type = 9)
     {
@@ -77,11 +88,9 @@ namespace Maze.Models
             List<Cell> findHome = BreadthFirstSearch(graph, currCell, treasureCount, false, 0);
             for (int i = 1; i < findHome.Count; i++)
             {
-              Console.WriteLine("Shalom");
               currCellList.Add(findHome[i]);
             }
           }
-          Console.WriteLine("Shalom222222222");
           return currCellList;
         }
 

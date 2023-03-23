@@ -4,7 +4,9 @@ using Avalonia.Markup.Xaml;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Timers;
 using System.Linq;
+using System.IO;
 
 using System;
 
@@ -12,12 +14,13 @@ namespace Maze.ViewModels
 {
   public class MainWindowViewModel : INotifyPropertyChanged
   {
-    private int _sliderMax = 10, _rows = 0, _cols = 0, _gridHeight = 0, _gridWidth = 0, _iteration = 0, _steps = 6, _nodes = 11;
-    private string _fileName = "";
+    private int _sliderMax = 10, _rows = 0, _cols = 0, _gridHeight = 0, _gridWidth = 0, _iteration = 0, _steps = 6, _nodes = 11, _iconSize = 0;
+    private bool _isDFS = false, _isTSPOn = false, _showData = false;
+    private string _fileName = "", _route = "";
     private double _execTime = 850.9;
     private Cell[,] _cellList = new Cell[0, 0];
-    private List<Cell> _sequence = new List<Cell>();
-    private List<Cell> _path = new List<Cell>();
+    private Map? _map;
+    private List<Cell> _sequence = new List<Cell>(), _path = new List<Cell>();
     private Dictionary<int, string> _sequenceColors = new Dictionary<int, string>();
     private Dictionary<int, string> _pathColors = new Dictionary<int, string>();
 
@@ -33,8 +36,12 @@ namespace Maze.ViewModels
           _cellList[i, j].Color = "#FFFFFF";
         }
       }
+
+      _initPathColors(10);
+      _initSequenceColors(3);
     }
 
+    // GETTER-SETTER
     public int Steps
     {
       get => _steps;
@@ -44,7 +51,6 @@ namespace Maze.ViewModels
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Steps)));
       }
     }
-
     public int Nodes
     {
       get => _nodes;
@@ -54,7 +60,6 @@ namespace Maze.ViewModels
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Nodes)));
       }
     }
-
     public double ExecTime
     {
       get => _execTime;
@@ -64,7 +69,6 @@ namespace Maze.ViewModels
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ExecTime)));
       }
     }
-
     public Cell[,] CellList
     {
       get => _cellList;
@@ -74,7 +78,6 @@ namespace Maze.ViewModels
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CellList)));
       }
     }
-
     public int Rows
     {
       get => _rows;
@@ -84,7 +87,6 @@ namespace Maze.ViewModels
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Rows)));
       }
     }
-
     public int Cols
     {
       get => _cols;
@@ -94,7 +96,87 @@ namespace Maze.ViewModels
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Cols)));
       }
     }
-
+    public int SliderMax
+    {
+      get => _sliderMax;
+      set
+      {
+        _sliderMax = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SliderMax)));
+      }
+    }
+    private int GridHeight
+    {
+      get => _gridHeight;
+      set
+      {
+        _gridHeight = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GridHeight)));
+      }
+    }
+    private int GridWidth
+    {
+      get => _gridWidth;
+      set
+      {
+        _gridWidth = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GridWidth)));
+      }
+    }
+    public string FileName
+    {
+      get => _fileName;
+      set
+      {
+        _fileName = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SliderMax)));
+      }
+    }
+    public int IconSize
+    {
+      get => _iconSize;
+      set
+      {
+        _iconSize = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IconSize)));
+      }
+    }
+    public bool IsDFS
+    {
+      get => _isDFS;
+      set
+      {
+        _isDFS = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsDFS)));
+      }
+    }
+    public bool IsTSPOn
+    {
+      get => _isTSPOn;
+      set
+      {
+        _isTSPOn = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsTSPOn)));
+      }
+    }
+    public bool ShowData
+    {
+      get => _showData;
+      set
+      {
+        _showData = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ShowData)));
+      }
+    }
+    public string Route
+    {
+      get => _route;
+      set
+      {
+        _route = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Route)));
+      }
+    }
     public int Iteration
     {
       get => _iteration;
@@ -108,8 +190,10 @@ namespace Maze.ViewModels
           {
             temp[i, j] = _cellList[i, j];
             temp[i, j].VisitedCount = 0;
+            temp[i, j].IsBeingSearched = false;
           }
         }
+
         for (int i = 0; i < _sequence.Count; i++)
         {
           for (int j = 0; j < _rows; j++)
@@ -118,21 +202,27 @@ namespace Maze.ViewModels
             {
               if (temp[j, k].isEqual(_sequence[i]))
               {
-                if (i < _iteration)
+                if (i < _iteration && !temp[j, k].IsBeingSearched)
                 {
                   temp[j, k].VisitedCount++;
                   _changeCellColor(ref temp[j, k], true, true);
                 }
-                else if (temp[j, k].VisitedCount == 0)
+                else if (i == _iteration)
                 {
-                  // temp[j, k].Color = "#D9D9D9";
+                  temp[j, k].Color = "#FFFA0D";
+                  temp[j, k].IsBeingSearched = true;
+                }
+                else if (temp[j, k].VisitedCount == 0 && !temp[j, k].IsBeingSearched)
+                {
                   _changeCellColor(ref temp[j, k], false, true);
+
                 }
                 break;
               }
             }
           }
         }
+
         if (value == _sliderMax)
         {
           for (int i = 0; i < _path.Count; i++)
@@ -164,52 +254,12 @@ namespace Maze.ViewModels
               }
             }
           }
-
         }
         CellList = temp;
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Iteration)));
       }
     }
 
-    public int SliderMax
-    {
-      get => _sliderMax;
-      set
-      {
-        _sliderMax = value;
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SliderMax)));
-      }
-    }
-
-    private int GridHeight
-    {
-      get => _gridHeight;
-      set
-      {
-        _gridHeight = value;
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GridHeight)));
-      }
-    }
-
-    private int GridWidth
-    {
-      get => _gridWidth;
-      set
-      {
-        _gridWidth = value;
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GridWidth)));
-      }
-    }
-
-    public string FileName
-    {
-      get => _fileName;
-      set
-      {
-        _fileName = value;
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SliderMax)));
-      }
-    }
 
     private void _changeCellColor(ref Cell currCell, bool isVisited, bool isPath)
     {
@@ -254,98 +304,191 @@ namespace Maze.ViewModels
       }
     }
 
-    public void HandleSearch()
+    private string _getRoute(List<Cell> path)
     {
-      FileManager fileReader = new FileManager();
-      Map map = new Map(_fileName);
+      string res = "";
 
-      Rows = map.GetRowSize();
-      Cols = map.GetColSize();
+      for (int i = 0; i < path.Count - 1; i++)
+      {
+        Cell curr = path[i];
+        Cell next = path[i + 1];
 
-      _initPathColors(10);
-      _initSequenceColors(3);
+        if (curr.Row < next.Row && curr.Col == next.Col)
+        {
+          res += "D";
+        }
+        else if (curr.Row > next.Row && curr.Col == next.Col)
+        {
+          res += "U";
+        }
+        else if (curr.Row == next.Row && curr.Col > next.Col)
+        {
+          res += "L";
+        }
+        else if (curr.Row == next.Row && curr.Col < next.Col)
+        {
+          res += "R";
+        }
 
-      GridHeight = Math.Min(600 / _rows, 600 / _cols) * _rows;
-      GridWidth = Math.Min(600 / _rows, 600 / _cols) * _cols;
+        if (i < path.Count - 2)
+        {
+          res += " - ";
+        }
+      }
 
-      _cellList = new Cell[_rows, _cols];
+      return res;
+    }
+
+    public void ChangeDFS()
+    {
+      IsDFS = !_isDFS;
+
+      Iteration = 0;
+      SliderMax = 0;
+
+      Cell[,] temp = new Cell[_rows, _cols];
       for (int i = 0; i < _rows; i++)
       {
         for (int j = 0; j < _cols; j++)
         {
-          _cellList[i, j] = map.GetCells()[i, j];
-          switch (_cellList[i, j].Type)
-          {
-            case 0:
-              _cellList[i, j].Color = "#0000FF";
-              break;
-            case 1:
-              _cellList[i, j].Color = "#D9D9D9";
-              break;
-            case 3:
-              _cellList[i, j].Color = "#FFFFFF";
-              break;
-            case 9:
-              _cellList[i, j].Color = "#00FF00";
-              break;
-            default:
-              _cellList[i, j].Color = "#FFFFFF";
-              break;
-          }
+          temp[i, j] = _cellList[i, j];
+          temp[i, j].VisitedCount = 0;
+          temp[i, j].IsBeingSearched = false;
+          temp[i, j].Color = temp[i, j].Type == 3 ? "#FFFFFF" : "#D9D9D9";
         }
       }
+      CellList = temp;
 
-      Algorithms algorithm = new Algorithms();
-      Graph mapGraph = map?.GetGraph() ?? new Graph(new Cell(0, 0, -1));
-      List<Cell> _path1 = algorithm.BreadthFirstSearch(mapGraph, mapGraph.EntryVertex, map.TreasureCount, true, 9);
-      List<List<Cell>> path = algorithm.DepthFirstSearch(mapGraph);
-      algorithm.DFSPathPrint(path);
-      foreach (List<Cell> p in path)
+      ShowData = false;
+      _sequence = new List<Cell>();
+      _path = new List<Cell>();
+    }
+
+    public void ChangeTSP()
+    {
+      IsTSPOn = !_isTSPOn;
+
+      Iteration = 0;
+      SliderMax = 0;
+      ShowData = false;
+
+      Cell[,] temp = new Cell[_rows, _cols];
+      for (int i = 0; i < _rows; i++)
       {
-        int treasureCount = p.Count(cell => cell.Type == 9);
-        if (treasureCount == Map.treasureCount)
+        for (int j = 0; j < _cols; j++)
         {
-          foreach (Cell cell in p)
-          {
-            _path.Add(cell);
-          }
+          temp[i, j] = _cellList[i, j];
+          temp[i, j].VisitedCount = 0;
+          temp[i, j].IsBeingSearched = false;
+          temp[i, j].Color = temp[i, j].Type == 3 ? "#FFFFFF" : "#D9D9D9";
         }
       }
-      _sequence = algorithm.CheckList;
-      // foreach (Cell c in _sequence)
-      // {
-      //   c.printCell();
-      // }
-      // foreach (Cell c in path)
-      // {
-      //   Console.WriteLine(c.Row + " " + c.Col);
-      // }
+      CellList = temp;
 
-      // for (int i = 0; i < path.Count; i++)
-      // {
-      //   _sequence.Add(path[i]);
+      _sequence = new List<Cell>();
+      _path = new List<Cell>();
+    }
 
-      // }
-      foreach (Cell p in _path)
+    public void HandleFileInput()
+    {
+      FileManager fileReader = new FileManager();
+      _map = new Map(_fileName);
+
+      Rows = _map.GetRowSize();
+      Cols = _map.GetColSize();
+      // TODO: Implement divide by zero exception
+      int minDimension = Math.Min(700 / Rows, 700 / Cols);
+      GridHeight = minDimension * Rows;
+      GridWidth = minDimension * Cols;
+      IconSize = minDimension / 4;
+
+
+      Cell[,] temp = new Cell[_rows, _cols];
+      for (int i = 0; i < _rows; i++)
       {
-        p.printCell();
+        for (int j = 0; j < _cols; j++)
+        {
+          temp[i, j] = _map.GetCells()[i, j];
+          temp[i, j].Color = temp[i, j].Type == 3 ? "#FFFFFF" : "#D9D9D9";
+        }
       }
+
+      _sequence = new List<Cell>();
+      _path = new List<Cell>();
+
+      CellList = temp;
+      Iteration = 0;
+
+      temp = new Cell[_rows, _cols];
+      for (int i = 0; i < _rows; i++)
+      {
+        for (int j = 0; j < _cols; j++)
+        {
+          temp[i, j] = _cellList[i, j];
+          temp[i, j].VisitedCount = 0;
+          temp[i, j].IsBeingSearched = false;
+          temp[i, j].Color = temp[i, j].Type == 3 ? "#FFFFFF" : "#D9D9D9";
+        }
+      }
+      CellList = temp;
+
+      SliderMax = 0;
+      ShowData = false;
+    }
+
+    public void HandleSearch()
+    {
+      Algorithms algorithm = new Algorithms();
+      Graph mapGraph = _map?.GetGraph() ?? new Graph(new Cell(0, 0, -1));
+
+      if (_isDFS)
+      {
+        List<List<Cell>> temp = algorithm.DepthFirstSearch(mapGraph);
+        foreach (List<Cell> p in temp)
+        {
+          int treasureCount = p.Count(cell => cell.Type == 9);
+          if (treasureCount == Map.treasureCount)
+          {
+            foreach (Cell cell in p)
+            {
+              _path.Add(cell);
+            }
+          }
+        }
+        _sequence = _path;
+      }
+      else
+      {
+        _path = algorithm.BreadthFirstSearch(mapGraph, mapGraph.EntryVertex, _map.TreasureCount, _isTSPOn, 9);
+        _sequence = algorithm.CheckList;
+      }
+
       SliderMax = _sequence.Count;
 
-      for (int i = 0; i < _sequence.Count; i++)
-      {
+      Steps = _path.Count;
+      Nodes = _sequence.Count;
+      Route = _getRoute(_path);
 
-        Cell[,] temp = new Cell[_rows, _cols];
-        for (int j = 0; j < _rows; j++)
+      // Iteration = _sequence.Count;
+      algorithm.CheckList = new List<Cell>();
+      algorithm.SolutionSpace = new List<Cell>();
+      algorithm.TreasureFound = 0;
+
+      Timer timer = new(interval: 100);
+      timer.Elapsed += (sender, e) =>
+      {
+        if (Iteration == SliderMax)
         {
-          for (int k = 0; k < _cols; k++)
-          {
-            temp[j, k] = _cellList[j, k];
-          }
+          timer.Dispose();
         }
-        CellList = temp;
-      }
-      Iteration = _sequence.Count;
+        else
+        {
+          Iteration++;
+        }
+      };
+      timer.Start();
+
+      ShowData = true;
     }
   }
 }

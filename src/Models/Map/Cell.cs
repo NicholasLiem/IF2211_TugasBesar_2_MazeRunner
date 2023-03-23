@@ -6,7 +6,7 @@ namespace Maze.Models
   {
     private int _row, _col, _type, _visitedCount;
     private string _color;
-    private bool _visited;
+    private bool _visited, _isBeingSearched = false;
 
     public Cell(int row, int col, int type)
     {
@@ -45,6 +45,20 @@ namespace Maze.Models
       get => _visitedCount;
       set => _visitedCount = value;
     }
+    public bool IsTreasure
+    {
+      get => _type == 9;
+    }
+    public bool IsStart
+    {
+      get => _type == 0;
+    }
+    public bool IsBeingSearched
+    {
+      get => _isBeingSearched;
+      set => _isBeingSearched = value;
+    }
+
     public void printCell()
     {
       int Row = _row;

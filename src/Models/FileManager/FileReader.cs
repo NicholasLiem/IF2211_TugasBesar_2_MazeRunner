@@ -17,7 +17,6 @@ namespace Maze.Models
       //   Console.WriteLine("Please enter a valid file name:");
       //   fileName = Console.ReadLine();
       // }
-
       string filePath = Path.Combine(basePath, "test", fileName);
 
       if (File.Exists(filePath) && Path.GetExtension(filePath) == ".txt")
