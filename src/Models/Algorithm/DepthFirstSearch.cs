@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Maze.Models
 {
   public partial class Algorithms
   {
-    public List<Cell> DepthFirstSearch(Graph graph)
+    public List<Cell> DepthFirstSearch(Graph graph, Map map)
     {
-
+      Console.WriteLine("START");
 
       /* 
           Inisialisasi stack untuk menyimpan jalur yang sudah ditempuh
@@ -17,7 +18,6 @@ namespace Maze.Models
       HashSet<Cell> visitedNodes = new HashSet<Cell>();
       Stack<Cell> candidatePath = new Stack<Cell>();
 
-
       /* Pendaftaran entryVertex ke dalam availableNodes */
       availableNodes.Push(graph.EntryVertex);
 
@@ -26,7 +26,6 @@ namespace Maze.Models
       */
       while (availableNodes.Count > 0)
       {
-
         /* Mengambil cell yang ada di availableNodes */
         Cell currentCell = availableNodes.Pop();
 
@@ -36,11 +35,16 @@ namespace Maze.Models
         visitedNodes.Add(currentCell);
         candidatePath.Push(currentCell);
         paths.Push(currentCell);
-
         currentCell.VisitedCount++;
 
+        foreach (Cell c in candidatePath)
+        {
+          c.printCell();
+        }
+        Console.WriteLine("Halo");
+
         /* Kalau sudah ditemukan solusi, maka keluarkan solusinya */
-        if (candidatePathHasAllTreasures(candidatePath.Reverse().ToList(), Map.treasureCells))
+        if (candidatePathHasAllTreasures(candidatePath.Reverse().ToList(), map.treasureCells))
         {
           return candidatePath.Reverse().ToList();
         }

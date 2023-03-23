@@ -11,7 +11,7 @@ namespace Maze.Models
     private Graph graph;
     private int rowSize;
     private int colSize;
-    public static HashSet<Cell> treasureCells = new HashSet<Cell>();
+    public HashSet<Cell> treasureCells = new HashSet<Cell>();
     public Map(string filename)
     {
       treasureCount = 0;

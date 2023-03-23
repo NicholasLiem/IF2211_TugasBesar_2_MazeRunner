@@ -432,6 +432,9 @@ namespace Maze.ViewModels
       }
       CellList = temp;
 
+      _sequence = new List<Cell>();
+      _path = new List<Cell>();
+
       SliderMax = 0;
       ShowData = false;
     }
@@ -443,19 +446,8 @@ namespace Maze.ViewModels
 
       if (_isDFS)
       {
-        _path = algorithm.DepthFirstSearch(mapGraph);
-        // foreach (List<Cell> p in temp)
-        // {
-        //   int treasureCount = p.Count(cell => cell.Type == 9);
-        //   if (treasureCount == Map.treasureCount)
-        //   {
-        //     foreach (Cell cell in p)
-        //     {
-        //       _path.Add(cell);
-        //     }
-        //   }
-        // }
-        _sequence = _path;
+        _sequence = algorithm.DepthFirstSearch(mapGraph, _map);
+        _path = _sequence;
       }
       else
       {
