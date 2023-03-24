@@ -453,14 +453,16 @@ namespace Maze.ViewModels
       {
         Console.WriteLine(e);
       }
+      catch (UnknownSymbolReading e)
+      {
+        Console.WriteLine(e);
+      }
     }
 
     public void HandleSearch()
     {
       try
       {
-
-
         Algorithms algorithm = new Algorithms();
         Graph mapGraph = _map?.GetGraph() ?? new Graph(new Cell(0, 0, -1));
         var watch = System.Diagnostics.Stopwatch.StartNew();
