@@ -37,11 +37,17 @@ batasan dari input maze cukup berbentuk segi-empat dengan spesifikasi simbol seb
 Lakukan pada terminal di *root directory* dari *repository* ini
 1. `dotnet build`
 2. `dotnet run`
-3. ...
 
 ## Cara Menggunakan Program
-1. ...
-2. ...
+1. Masukkan nama file yang valid (file sudah berada pada folder `config`)
+2. Jika nama file valid, tekan tombol `Input` dan program akan menampilkan maze ke layar
+3. Pilih algoritma yang digunakan (BFS/DFS) menggunakan toggle `Algorithm`
+4. Jika algoritma yang dipilih adalah Breadth First Search, pilih apakah program akan mencari rute TSP atau tidak menggunakan toggle `TSP`
+5. Atur kecepatan animasi pencarian dengan menggunakan slider pada bagian kanan layar
+6. Setelah pengaturan awal sudah dilakukan, tekan tombol `Search` untuk memulai pencarian rute
+7. Data hasil pencarian program akan ditampilkan pada bagian bawah layar
+8. Langkah-langkah pencarian dapat disimulasikan secara manual dengan menggunakan slider pada bagian bawah layar
+9. Ulangi langkah pertama jika ingin mencari rute untuk konfigurasi maze lainnya
 
 ## Pembuat Program
 * Hosea Nathanael Abetnego (13521057)
