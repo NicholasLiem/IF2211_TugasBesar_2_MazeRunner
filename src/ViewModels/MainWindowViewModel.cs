@@ -399,98 +399,116 @@ namespace Maze.ViewModels
     public void HandleFileInput()
     {
       FileManager fileReader = new FileManager();
-      _map = new Map(_fileName);
-
-      Rows = _map.GetRowSize();
-      Cols = _map.GetColSize();
-      // TODO: Implement divide by zero exception
-      int minDimension = Math.Min(700 / Rows, 700 / Cols);
-      GridHeight = minDimension * Rows;
-      GridWidth = minDimension * Cols;
-      IconSize = minDimension / 4;
-
-
-      Cell[,] temp = new Cell[_rows, _cols];
-      for (int i = 0; i < _rows; i++)
+      try
       {
-        for (int j = 0; j < _cols; j++)
+
+        _map = new Map(_fileName);
+
+
+        Rows = _map.GetRowSize();
+        Cols = _map.GetColSize();
+        // TODO: Implement divide by zero exception
+        int minDimension = Math.Min(700 / Rows, 700 / Cols);
+        GridHeight = minDimension * Rows;
+        GridWidth = minDimension * Cols;
+        IconSize = minDimension / 4;
+
+
+        Cell[,] temp = new Cell[_rows, _cols];
+        for (int i = 0; i < _rows; i++)
         {
-          temp[i, j] = _map.GetCells()[i, j];
-          temp[i, j].Color = temp[i, j].Type == 3 ? "#FFFFFF" : "#D9D9D9";
+          for (int j = 0; j < _cols; j++)
+          {
+            temp[i, j] = _map.GetCells()[i, j];
+            temp[i, j].Color = temp[i, j].Type == 3 ? "#FFFFFF" : "#D9D9D9";
+          }
         }
+
+        _sequence = new List<Cell>();
+        _path = new List<Cell>();
+
+        CellList = temp;
+        Iteration = 0;
+
+        temp = new Cell[_rows, _cols];
+        for (int i = 0; i < _rows; i++)
+        {
+          for (int j = 0; j < _cols; j++)
+          {
+            temp[i, j] = _cellList[i, j];
+            temp[i, j].VisitedCount = 0;
+            temp[i, j].IsBeingSearched = false;
+            temp[i, j].Color = temp[i, j].Type == 3 ? "#FFFFFF" : "#D9D9D9";
+          }
+        }
+        CellList = temp;
+
+        _sequence = new List<Cell>();
+        _path = new List<Cell>();
+
+        SliderMax = 0;
+        ShowData = false;
       }
-
-      _sequence = new List<Cell>();
-      _path = new List<Cell>();
-
-      CellList = temp;
-      Iteration = 0;
-
-      temp = new Cell[_rows, _cols];
-      for (int i = 0; i < _rows; i++)
+      catch (UnkownFileReading e)
       {
-        for (int j = 0; j < _cols; j++)
-        {
-          temp[i, j] = _cellList[i, j];
-          temp[i, j].VisitedCount = 0;
-          temp[i, j].IsBeingSearched = false;
-          temp[i, j].Color = temp[i, j].Type == 3 ? "#FFFFFF" : "#D9D9D9";
-        }
+        Console.WriteLine(e);
       }
-      CellList = temp;
-
-      _sequence = new List<Cell>();
-      _path = new List<Cell>();
-
-      SliderMax = 0;
-      ShowData = false;
     }
 
     public void HandleSearch()
     {
-      Algorithms algorithm = new Algorithms();
-      Graph mapGraph = _map?.GetGraph() ?? new Graph(new Cell(0, 0, -1));
-      var watch = System.Diagnostics.Stopwatch.StartNew();
-
-      if (_isDFS)
+      try
       {
-        _sequence = algorithm.DepthFirstSearch(mapGraph, _map);
-        _path = _sequence;
-        watch.Stop();
-      }
-      else
-      {
-        _path = algorithm.BreadthFirstSearch(mapGraph, mapGraph.EntryVertex, _map.TreasureCount, _isTSPOn, 9);
-        _sequence = algorithm.CheckList;
-        watch.Stop();
-      }
-      ExecTime = watch.ElapsedMilliseconds;
 
-      SliderMax = _sequence.Count;
 
-      Steps = _path.Count;
-      Nodes = _sequence.Count;
-      Route = _getRoute(_path);
+        Algorithms algorithm = new Algorithms();
+        Graph mapGraph = _map?.GetGraph() ?? new Graph(new Cell(0, 0, -1));
+        var watch = System.Diagnostics.Stopwatch.StartNew();
 
-      algorithm.CheckList = new List<Cell>();
-      algorithm.SolutionSpace = new List<Cell>();
-      algorithm.TreasureFound = 0;
-
-      Timer timer = new(interval: _speed);
-      timer.Elapsed += (sender, e) =>
-      {
-        if (Iteration == SliderMax)
+        if (_isDFS)
         {
-          timer.Dispose();
+          _sequence = algorithm.DepthFirstSearch(mapGraph, _map);
+          _path = _sequence;
+          watch.Stop();
         }
         else
         {
-          Iteration++;
+          _path = algorithm.BreadthFirstSearch(mapGraph, mapGraph.EntryVertex, _map.TreasureCount, _isTSPOn, 9);
+          _sequence = algorithm.CheckList;
+          watch.Stop();
         }
-      };
-      timer.Start();
+        ExecTime = watch.ElapsedMilliseconds;
 
-      ShowData = true;
+        SliderMax = _sequence.Count;
+
+        Steps = _path.Count;
+        Nodes = _sequence.Count;
+        Route = _getRoute(_path);
+
+        algorithm.CheckList = new List<Cell>();
+        algorithm.SolutionSpace = new List<Cell>();
+        algorithm.TreasureFound = 0;
+
+        Timer timer = new(interval: _speed);
+        timer.Elapsed += (sender, e) =>
+        {
+          if (Iteration == SliderMax)
+          {
+            timer.Dispose();
+          }
+          else
+          {
+            Iteration++;
+          }
+        };
+        timer.Start();
+
+        ShowData = true;
+      }
+      catch
+      {
+
+      }
     }
   }
 }
