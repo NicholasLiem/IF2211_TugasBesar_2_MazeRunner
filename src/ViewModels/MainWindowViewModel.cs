@@ -14,7 +14,7 @@ namespace Maze.ViewModels
 {
   public class MainWindowViewModel : INotifyPropertyChanged
   {
-    private int _sliderMax = 10, _rows = 0, _cols = 0, _gridHeight = 0, _gridWidth = 0, _iteration = 0, _steps = 6, _nodes = 11, _iconSize = 0;
+    private int _sliderMax = 10, _rows = 0, _cols = 0, _gridHeight = 0, _gridWidth = 0, _iteration = 0, _steps = 6, _nodes = 11, _iconSize = 0, _speed = 100;
     private bool _isDFS = false, _isTSPOn = false, _showData = false;
     private string _fileName = "", _route = "";
     private double _execTime = 850.9;
@@ -177,6 +177,15 @@ namespace Maze.ViewModels
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Route)));
       }
     }
+    public int Speed
+    {
+      get => _speed / 100;
+      set
+      {
+        _speed = 100 * value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Speed)));
+      }
+    }
     public int Iteration
     {
       get => _iteration;
@@ -278,7 +287,6 @@ namespace Maze.ViewModels
 
     private void _initPathColors(int colorCount)
     {
-      // TODO: Remove previous dictionary entries
       int step = (255 - 10) / (colorCount - 1);
 
       for (int i = 0; i < colorCount; i++)
@@ -292,7 +300,6 @@ namespace Maze.ViewModels
 
     private void _initSequenceColors(int colorCount)
     {
-      // TODO: Remove previous dictionary entries
       int step = (255 - 10) / (colorCount - 1);
 
       for (int i = 0; i < colorCount; i++)
@@ -457,7 +464,6 @@ namespace Maze.ViewModels
         _sequence = algorithm.CheckList;
         watch.Stop();
       }
-
       ExecTime = watch.ElapsedMilliseconds;
 
       SliderMax = _sequence.Count;
@@ -466,12 +472,11 @@ namespace Maze.ViewModels
       Nodes = _sequence.Count;
       Route = _getRoute(_path);
 
-      // Iteration = _sequence.Count;
       algorithm.CheckList = new List<Cell>();
       algorithm.SolutionSpace = new List<Cell>();
       algorithm.TreasureFound = 0;
 
-      Timer timer = new(interval: 100);
+      Timer timer = new(interval: _speed);
       timer.Elapsed += (sender, e) =>
       {
         if (Iteration == SliderMax)
